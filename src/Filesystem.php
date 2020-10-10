@@ -10,6 +10,7 @@ use function file_put_contents;
 use function is_dir;
 use function is_file;
 use function is_readable;
+use function is_writable;
 use function md5_file;
 use function unlink;
 
@@ -52,6 +53,18 @@ class Filesystem
     public function isReadable(string $path): bool
     {
         return is_readable($path);
+    }
+
+    /**
+     * Determine if the given path is writable.
+     *
+     * @param  string $path Path to check.
+     *
+     * @return bool Returns TRUE if the given path exists and is writable, FALSE otherwise.
+     */
+    public function isWritable(string $path): bool
+    {
+        return is_writable($path);
     }
 
     /**

@@ -46,6 +46,18 @@ test('test isReadable() method', function (): void {
     $this->assertFalse($filesytem->isReadable($this->tempDir . '/2.txt'));
 });
 
+test('test isWritable() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+
+    @chmod($this->tempDir . '/1.txt', 0444);
+    $this->assertFalse($filesytem->isWritable($this->tempDir . '/1.txt'));
+    @chmod($this->tempDir . '/1.txt', 0777);
+    $this->assertTrue($filesytem->isWritable($this->tempDir . '/1.txt'));
+
+    $this->assertFalse($filesytem->isWritable($this->tempDir . '/2.txt'));
+});
+
 test('test exists() method', function (): void {
     $filesytem = new Filesystem();
     $filesytem->put($this->tempDir . '/1.txt', 'test');
