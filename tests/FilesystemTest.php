@@ -30,6 +30,22 @@ test('test isDir() method', function (): void {
     $this->assertTrue($filesytem->isDirectory($this->tempDir));
 });
 
+test('test isReadable() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+
+    if (DIRECTORY_SEPARATOR === '\\') {
+        $this->assertTrue($files->isReadable($this->tempDir . '/1.txt'));
+    } else {
+        @chmod($this->tempDir . '/1.txt', 0000);
+        $this->assertFalse($filesytem->isReadable($this->tempDir . '/1.txt'));
+        @chmod($this->tempDir . '/1.txt', 0777);
+        $this->assertTrue($filesytem->isReadable($this->tempDir . '/1.txt'));
+    }
+
+    $this->assertFalse($filesytem->isReadable($this->tempDir . '/2.txt'));
+});
+
 test('test exists() method', function (): void {
     $filesytem = new Filesystem();
     $filesytem->put($this->tempDir . '/1.txt', 'test');

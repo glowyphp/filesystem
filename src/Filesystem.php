@@ -7,10 +7,13 @@ namespace Atomastic\Filesystem;
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
+use function is_dir;
 use function is_file;
+use function is_readable;
 use function md5_file;
 use function unlink;
 
+use const FILE_APPEND;
 use const LOCK_EX;
 
 class Filesystem
@@ -38,7 +41,19 @@ class Filesystem
     {
         return is_dir($path);
     }
-    
+
+    /**
+     * Determine if the given path is readable.
+     *
+     * @param  string $path Path to check.
+     *
+     * @return bool Returns TRUE if the given path exists and is readable, FALSE otherwise.
+     */
+    public function isReadable(string $path): bool
+    {
+        return is_readable($path);
+    }
+
     /**
      * Checks the existence of files or directories and returns false if any of them is missing.
      *
