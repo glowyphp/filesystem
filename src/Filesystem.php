@@ -48,15 +48,15 @@ class Filesystem
     /**
      * Write the contents of a file.
      *
-     * @param  string $path     Path to the file where to write the data.
-     * @param  string $contents The data to write.
-     * @param  bool   $lock     Acquire an exclusive lock on the file while proceeding to the writing.
+     * @param  string $path Path to the file where to write the data.
+     * @param  string $data The data to write.
+     * @param  bool   $lock Acquire an exclusive lock on the file while proceeding to the writing.
      *
      * @return int|bool Returns the number of bytes that were written to the file, or FALSE on failure.
      */
-    public function put(string $path, string $contents, bool $lock = false)
+    public function put(string $path, string $data, bool $lock = false)
     {
-        return file_put_contents($path, $contents, $lock ? LOCK_EX : 0);
+        return file_put_contents($path, $data, $lock ? LOCK_EX : 0);
     }
 
     /**
@@ -116,17 +116,30 @@ class Filesystem
     /**
      * Prepend to a file.
      *
-     * @param  string $path     Path to the file where to write the data.
-     * @param  string $contents The data to write.
+     * @param  string $path Path to the file where to write the data.
+     * @param  string $data The data to write.
      *
      * @return int|bool Returns the number of bytes that were written to the file, or FALSE on failure.
      */
-    public function prepend(string $path, string $contents)
+    public function prepend(string $path, string $data)
     {
         if ($this->exists($path)) {
-            return $this->put($path, $contents . $this->get($path));
+            return $this->put($path, $data . $this->get($path));
         }
 
         return $this->put($path, $data);
+    }
+
+    /**
+     * Append to a file.
+     *
+     * @param  string $path Path to the file where to write the data.
+     * @param  string $data The data to write.
+     *
+     * @return int|bool Returns the number of bytes that were written to the file, or FALSE on failure.
+     */
+    public function append($path, $data)
+    {
+        return file_put_contents($path, $data, FILE_APPEND);
     }
 }

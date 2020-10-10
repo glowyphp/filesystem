@@ -63,3 +63,10 @@ test('test prepend() method', function (): void {
     $this->assertEquals(11, $filesytem->prepend($this->tempDir . '/1.txt', 'hello '));
     $this->assertEquals('hello world', $filesytem->get($this->tempDir . '/1.txt'));
 });
+
+test('test append() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'hello');
+    $this->assertEquals(6, $filesytem->append($this->tempDir . '/1.txt', ' world'));
+    $this->assertEquals('hello world', $filesytem->get($this->tempDir . '/1.txt'));
+});
