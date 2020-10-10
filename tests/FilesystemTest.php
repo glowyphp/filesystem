@@ -25,7 +25,7 @@ test('test isFile() method', function (): void {
     $this->assertTrue($filesytem->isFile($this->tempDir . '/1.txt'));
 });
 
-test('test isDir() method', function (): void {
+test('test isDirectory() method', function (): void {
     $filesytem = new Filesystem();
     $this->assertTrue($filesytem->isDirectory($this->tempDir));
 });
@@ -56,6 +56,11 @@ test('test isWritable() method', function (): void {
     $this->assertTrue($filesytem->isWritable($this->tempDir . '/1.txt'));
 
     $this->assertFalse($filesytem->isWritable($this->tempDir . '/2.txt'));
+});
+
+test('test isStream() method', function (): void {
+    $filesytem = new Filesystem();
+    $this->assertTrue($filesytem->isStream('file://1.txt'));
 });
 
 test('test exists() method', function (): void {

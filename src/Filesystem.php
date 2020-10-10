@@ -12,6 +12,7 @@ use function is_file;
 use function is_readable;
 use function is_writable;
 use function md5_file;
+use function strpos;
 use function unlink;
 
 use const FILE_APPEND;
@@ -65,6 +66,18 @@ class Filesystem
     public function isWritable(string $path): bool
     {
         return is_writable($path);
+    }
+
+    /**
+     * Determine if the given path is a stream path.
+     *
+     * @param  string $path Path to check.
+     *
+     * @return bool Returns TRUE if the given path is stream path, FALSE otherwise.
+     */
+    public function isStream(string $path): bool
+    {
+        return strpos($path, '://') !== false;
     }
 
     /**
