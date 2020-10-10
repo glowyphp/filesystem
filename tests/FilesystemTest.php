@@ -5,26 +5,42 @@ declare(strict_types=1);
 use Atomastic\Filesystem\Filesystem;
 
 beforeEach(function (): void {
-    //$filesytem = new Filesystem();
+    $this->tempDir = __DIR__ . '/tmp';
+    @mkdir($this->tempDir);
 });
 
-test('test put() isFile() exists() delete() methods', function (): void {
-    $filesytem = new Filesystem();
+afterEach(function (): void {
+    @rmdir($this->tempDir);
+    unset($this->tempDir);
+});
 
-    $this->assertEquals(4, $filesytem->put(__DIR__ . '/filesystem/1.txt', 'test'));
-    $this->assertEquals(4, $filesytem->put(__DIR__ . '/filesystem/3.txt', 'test'));
-    $this->assertEquals(4, $filesytem->put(__DIR__ . '/filesystem/4.txt', 'test'));
-    $this->assertTrue($filesytem->isFile(__DIR__ . '/filesystem/1.txt'));
-    $this->assertTrue($filesytem->exists(__DIR__ . '/filesystem/1.txt'));
-    $this->assertTrue($filesytem->exists([__DIR__ . '/filesystem/1.txt']));
-    $this->assertFalse($filesytem->exists([
-        __DIR__ . '/filesystem/1.txt',
-        __DIR__ . '/test/2.txt',
-    ]));
-    $this->assertFalse($filesytem->exists(__DIR__ . '/filesystem/2.txt'));
-    $this->assertTrue($filesytem->delete(__DIR__ . '/filesystem/1.txt'));
-    $this->assertTrue($filesytem->delete([
-        __DIR__ . '/filesystem/3.txt',
-        __DIR__ . '/filesystem/4.txt',
-    ]));
+test('test put() method', function (): void {
+    $filesytem = new Filesystem();
+    $this->assertEquals(4, $filesytem->put($this->tempDir . '/1.txt', 'test'));
+});
+
+test('test isFile() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+    $this->assertTrue($filesytem->isFile($this->tempDir . '/1.txt'));
+});
+
+test('test exists() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+    $this->assertTrue($filesytem->exists($this->tempDir . '/1.txt'));
+
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+    $filesytem->put($this->tempDir . '/2.txt', 'test');
+    $this->assertTrue($filesytem->exists([$this->tempDir . '/1.txt', $this->tempDir . '/2.txt']));
+});
+
+test('test delete() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+    $this->assertTrue($filesytem->delete($this->tempDir . '/1.txt'));
+
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+    $filesytem->put($this->tempDir . '/2.txt', 'test');
+    $this->assertTrue($filesytem->delete([$this->tempDir . '/1.txt', $this->tempDir . '/2.txt']));
 });
