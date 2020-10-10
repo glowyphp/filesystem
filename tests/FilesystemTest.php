@@ -25,6 +25,11 @@ test('test isFile() method', function (): void {
     $this->assertTrue($filesytem->isFile($this->tempDir . '/1.txt'));
 });
 
+test('test isDir() method', function (): void {
+    $filesytem = new Filesystem();
+    $this->assertTrue($filesytem->isDirectory($this->tempDir));
+});
+
 test('test exists() method', function (): void {
     $filesytem = new Filesystem();
     $filesytem->put($this->tempDir . '/1.txt', 'test');

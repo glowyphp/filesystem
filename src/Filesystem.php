@@ -28,6 +28,18 @@ class Filesystem
     }
 
     /**
+     * Determine if the given path is a directory.
+     *
+     * @param  string $path Path to check.
+     *
+     * @return bool Returns TRUE if the given path exists and is a directory, FALSE otherwise.
+     */
+    public function isDirectory(string $path): bool
+    {
+        return is_dir($path);
+    }
+    
+    /**
      * Checks the existence of files or directories and returns false if any of them is missing.
      *
      * @param string|string[] $paths A path, or an array of paths to check.
@@ -138,7 +150,7 @@ class Filesystem
      *
      * @return int|bool Returns the number of bytes that were written to the file, or FALSE on failure.
      */
-    public function append($path, $data)
+    public function append(string $path, string $data)
     {
         return file_put_contents($path, $data, FILE_APPEND);
     }
