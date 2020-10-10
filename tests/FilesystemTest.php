@@ -44,3 +44,9 @@ test('test delete() method', function (): void {
     $filesytem->put($this->tempDir . '/2.txt', 'test');
     $this->assertTrue($filesytem->delete([$this->tempDir . '/1.txt', $this->tempDir . '/2.txt']));
 });
+
+test('test hash() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+    $this->assertEquals('098f6bcd4621d373cade4e832627b4f6', $filesytem->hash($this->tempDir . '/1.txt'));
+});

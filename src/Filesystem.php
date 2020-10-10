@@ -80,4 +80,16 @@ class Filesystem
 
         return $result;
     }
+
+    /**
+     * Get the MD5 hash of the file at the given path.
+     *
+     * @param  string $path The path.
+     *
+     * @return string Returns a string on success, FALSE otherwise.
+     */
+    public function hash(string $path, bool $rawOutput = false): string
+    {
+        return md5_file($path, $rawOutput);
+    }
 }
