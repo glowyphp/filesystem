@@ -6,12 +6,25 @@ namespace Atomastic\Filesystem;
 
 use function file_exists;
 use function file_put_contents;
+use function is_file;
 use function unlink;
 
 use const LOCK_EX;
 
 class Filesystem
 {
+    /**
+     * Determine if the given path is a regular file.
+     *
+     * @param  string $path Path to the file.
+     *
+     * @return bool Returns TRUE if the filename exists and is a regular file, FALSE otherwise.
+     */
+    public function isFile(string $path): bool
+    {
+        return is_file($path);
+    }
+
     /**
      * Checks the existence of files or directories and returns false if any of them is missing.
      *
