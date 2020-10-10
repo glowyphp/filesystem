@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Atomastic\Filesystem;
 
 use function file_exists;
+use function file_get_contents;
 use function file_put_contents;
 use function is_file;
+use function md5_file;
 use function unlink;
 
 use const LOCK_EX;
@@ -91,5 +93,40 @@ class Filesystem
     public function hash(string $path, bool $rawOutput = false): string
     {
         return md5_file($path, $rawOutput);
+    }
+
+    /**
+     * Get the contents of a file.
+     *
+     * @param string $path The path to the file.
+     *
+     * @return string|false The file contents or false on failure.
+     */
+    public static function get(string $path)
+    {
+        $contents = file_get_contents($path);
+
+        if ($contents === false) {
+            return false;
+        }
+
+        return $contents;
+    }
+
+    /**
+     * Prepend to a file.
+     *
+     * @param  string $path     Path to the file where to write the data.
+     * @param  string $contents The data to write.
+     *
+     * @return int|bool Returns the number of bytes that were written to the file, or FALSE on failure.
+     */
+    public function prepend(string $path, string $contents)
+    {
+        if ($this->exists($path)) {
+            return $this->put($path, $contents . $this->get($path));
+        }
+
+        return $this->put($path, $data);
     }
 }

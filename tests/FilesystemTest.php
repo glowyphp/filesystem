@@ -50,3 +50,16 @@ test('test hash() method', function (): void {
     $filesytem->put($this->tempDir . '/1.txt', 'test');
     $this->assertEquals('098f6bcd4621d373cade4e832627b4f6', $filesytem->hash($this->tempDir . '/1.txt'));
 });
+
+test('test get() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+    $this->assertEquals('test', $filesytem->get($this->tempDir . '/1.txt'));
+});
+
+test('test prepend() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'world');
+    $this->assertEquals(11, $filesytem->prepend($this->tempDir . '/1.txt', 'hello '));
+    $this->assertEquals('hello world', $filesytem->get($this->tempDir . '/1.txt'));
+});
