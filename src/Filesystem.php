@@ -293,4 +293,16 @@ class Filesystem
 
         return true;
     }
+
+    /**
+     * Empty the specified directory of all files and directories.
+     *
+     * @param  string $directory Directory to cleanup.
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
+     */
+    public function cleanDirectory($directory): bool
+    {
+        return $this->deleteDirectory($directory, true);
+    }
 }

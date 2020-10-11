@@ -164,7 +164,19 @@ test('test copy() method', function (): void {
 
 test('test deleteDirectory() method', function (): void {
     @mkdir($this->tempDir . '/1');
+    @mkdir($this->tempDir . '/1/2');
+    @mkdir($this->tempDir . '/1/2/3');
 
     $filesytem = new Filesystem();
     $this->assertTrue($filesytem->deleteDirectory($this->tempDir . '/1'));
+});
+
+test('test cleanDirectory() method', function (): void {
+    @mkdir($this->tempDir . '/1');
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1/1.txt', 'hello');
+
+    $filesytem = new Filesystem();
+    $this->assertTrue($filesytem->cleanDirectory($this->tempDir . '/1'));
+    $this->assertFalse($filesytem->exists($this->tempDir . '/1/1.txt'));
 });
