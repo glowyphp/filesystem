@@ -230,3 +230,11 @@ test('test lastAccess() method', function (): void {
 
     $this->assertEquals($time, $filesytem->lastAccess($this->tempDir . '/1.txt'));
 });
+
+test('test mimeType() method', function (): void {
+    $filesytem = new Filesystem();
+
+    $filesytem->put($this->tempDir . '/1.txt', 'hello world');
+
+    $this->assertEquals('text/plain', $filesytem->mimeType($this->tempDir . '/1.txt'));
+});

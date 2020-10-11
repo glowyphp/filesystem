@@ -384,4 +384,16 @@ class Filesystem
     {
         return fileatime($path);
     }
+
+    /**
+    * Get the mime-type of a given file.
+    *
+    * @param  string $path Path to the file.
+    *
+    * @return string|false Get the mime-type of a given file or false if an error occurred.
+    */
+    public function mimeType(string $path)
+    {
+        return finfo_file(finfo_open(FILEINFO_MIME_TYPE), $path);
+    }
 }
