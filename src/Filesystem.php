@@ -372,4 +372,16 @@ class Filesystem
     {
         return filemtime($path);
     }
+
+    /**
+     * Get the file's last access time.
+     *
+     * @param  string $path Path to the file.
+     *
+     * @return int Returns the time the file was last assecc.
+     */
+    public function lastAccess(string $path): int
+    {
+        return fileatime($path);
+    }
 }

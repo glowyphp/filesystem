@@ -221,3 +221,12 @@ test('test lastModified() method', function (): void {
 
     $this->assertEquals($time, $filesytem->lastModified($this->tempDir . '/1.txt'));
 });
+
+test('test lastAccess() method', function (): void {
+    $filesytem = new Filesystem();
+
+    $filesytem->put($this->tempDir . '/1.txt', 'hello world');
+    $time = fileatime($this->tempDir . '/1.txt');
+
+    $this->assertEquals($time, $filesytem->lastAccess($this->tempDir . '/1.txt'));
+});
