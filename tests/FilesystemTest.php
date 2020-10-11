@@ -98,7 +98,7 @@ test('test isLink method', function (): void {
     if (PHP_OS_FAMILY === 'Windows') {
         $this->markTestSkipped('The operating system is Windows');
     }
-    
+
     @symlink($this->tempDir . '/link.txt', 'link');
     $this->assertTrue($filesytem->isLink('link'));
 });
@@ -147,4 +147,14 @@ test('test append() method', function (): void {
     $filesytem->put($this->tempDir . '/1.txt', 'hello');
     $this->assertEquals(6, $filesytem->append($this->tempDir . '/1.txt', ' world'));
     $this->assertEquals('hello world', $filesytem->get($this->tempDir . '/1.txt'));
+});
+
+test('test chmod() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+
+    $filesytem->chmod($this->tempDir . '/1.txt', 0755);
+    $filePermission = substr(sprintf('%o', fileperms($this->tempDir . '/1.txt')), -4);
+    $expectedPermissions = DIRECTORY_SEPARATOR == '\\' ? '0666' : '0755';
+    $this->assertEquals($expectedPermissions, $filePermission);
 });
