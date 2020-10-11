@@ -6,6 +6,8 @@ namespace Atomastic\Filesystem;
 
 use ErrorException as IOException;
 use FilesystemIterator;
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
 
 use function chmod;
 use function copy;
@@ -13,8 +15,9 @@ use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
 use function fileperms;
+use function filesize;
+use function glob;
 use function is_dir;
-use function is_executable;
 use function is_file;
 use function is_link;
 use function is_readable;
@@ -254,8 +257,8 @@ class Filesystem
     /**
      * Find path names matching a given pattern.
      *
-     * @param  string  $pattern The pattern.
-     * @param  int     $flags   Valid flags.
+     * @param  string $pattern The pattern.
+     * @param  int    $flags   Valid flags.
      *
      * @return array Returns an array containing the matched files/directories, an empty array if no file matched.
      */
@@ -314,20 +317,42 @@ class Filesystem
      *
      * @return bool Returns TRUE on success or FALSE on failure.
      */
-    public function cleanDirectory($directory): bool
+    public function cleanDirectory(string $directory): bool
     {
         return $this->deleteDirectory($directory, true);
     }
 
     /**
-     * Gets file size.
+     * Gets file size in bytes.
      *
-     * @param  string  $path Path to the file.
+     * @param  string $path Path to the file.
      *
-     * @return int Returns the size of the file in bytes
+     * @return int Returns the size of the file in bytes.
      */
-    public function size($path): int
+    public function size(string $path): int
     {
         return filesize($path);
+    }
+
+    /**
+     * Gets size of a given directory in bytes.
+     *
+     * @param  string $directory Directory to check.
+     *
+     * @return int Returns the size of the directory in bytes.
+     */
+    public function directorySize(string $directory): int
+    {
+        $size = 0;
+
+        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::CURRENT_AS_FILEINFO | FilesystemIterator::SKIP_DOTS)) as $splFileInfo) {
+            if (! $splFileInfo->isFile()) {
+                continue;
+            }
+
+            $size += $splFileInfo->getSize();
+        }
+
+        return $size;
     }
 }
