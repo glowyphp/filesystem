@@ -204,10 +204,13 @@ test('test size() method', function (): void {
 test('test directorySize() method', function (): void {
     $filesytem = new Filesystem();
     @mkdir($this->tempDir . '/1');
+    @mkdir($this->tempDir . '/1/2');
     $filesytem->put($this->tempDir . '/1/1.txt', 'hello world');
     $filesytem->put($this->tempDir . '/1/2.txt', 'hello world');
+    $filesytem->put($this->tempDir . '/1/2/1.txt', 'hello world');
+    $filesytem->put($this->tempDir . '/1/2/2.txt', 'hello world');
 
-    $this->assertEquals(22, $filesytem->directorySize($this->tempDir . '/1'));
+    $this->assertEquals(44, $filesytem->directorySize($this->tempDir . '/1'));
 });
 
 test('test lastModified() method', function (): void {
