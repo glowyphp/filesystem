@@ -5,18 +5,26 @@ declare(strict_types=1);
 namespace Atomastic\Filesystem;
 
 use ErrorException as IOException;
+use FilesystemIterator;
 
+use function chmod;
+use function copy;
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
+use function fileperms;
 use function is_dir;
 use function is_executable;
 use function is_file;
+use function is_link;
 use function is_readable;
 use function is_writable;
 use function md5_file;
 use function preg_match;
+use function rmdir;
+use function sprintf;
 use function strpos;
+use function substr;
 use function unlink;
 
 use const FILE_APPEND;
@@ -97,25 +105,14 @@ class Filesystem
     }
 
     /**
-     * Returns true if the File is executable.
-     *
-     * @param  string $path Path to check.
-     *
-     * @return bool Returns TRUE if the given path is stream path, FALSE otherwise.
-     */
-    public function isExecutable(string $path): bool
-    {
-        return is_executable($path);
-    }
-
-    /**
      * Returns true if the File is symbolic link.
      *
      * @param  string $path Path to check.
      *
      * @return bool Returns TRUE if the given path is symbolic link, FALSE otherwise.
      */
-    public function isLink(string $path): bool {
+    public function isLink(string $path): bool
+    {
         return is_link($path);
     }
 
@@ -242,14 +239,60 @@ class Filesystem
      * @param  int|null $mode The mode parameter consists of three octal number components
      *                        specifying access restrictions for the owner, the user group
      *                        in which the owner is in, and to everybody else in this order.
+     *
      * @return mixed
      */
-    public function chmod(string $path, $mode = null)
+    public function chmod(string $path, ?int $mode = null)
     {
         if ($mode) {
             return chmod($path, $mode);
         }
 
         return substr(sprintf('%o', fileperms($path)), -4);
+    }
+
+    /**
+     * Copy a file to a new location.
+     *
+     * @param  string $path        Path to the source file.
+     * @param  string $destination The destination path.
+     *                             If the destination file already exists, it will be overwritten.
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
+     */
+    public function copy(string $path, string $destination): bool
+    {
+        return copy($path, $destination);
+    }
+
+    /**
+     * Delete a directory.
+     *
+     * @param  string $directory Directory to delete.
+     * @param  bool   $preserve  The directory itself may be optionally preserved.
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
+     */
+    public function deleteDirectory(string $directory, bool $preserve = false): bool
+    {
+        if (! $this->isDirectory($directory)) {
+            return false;
+        }
+
+        $items = new FilesystemIterator($directory);
+
+        foreach ($items as $item) {
+            if ($item->isDir() && ! $item->isLink()) {
+                $this->deleteDirectory($item->getPathname());
+            } else {
+                $this->delete($item->getPathname());
+            }
+        }
+
+        if ($preserve === false) {
+            @rmdir($directory);
+        }
+
+        return true;
     }
 }

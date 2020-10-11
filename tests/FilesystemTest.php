@@ -10,7 +10,8 @@ beforeEach(function (): void {
 });
 
 afterEach(function (): void {
-    @rmdir($this->tempDir);
+    $filesytem = new Filesystem();
+    $filesytem->deleteDirectory($this->tempDir);
     unset($this->tempDir);
 });
 
@@ -62,18 +63,6 @@ test('test isWritable() method', function (): void {
 test('test isStream() method', function (): void {
     $filesytem = new Filesystem();
     $this->assertTrue($filesytem->isStream('file://1.txt'));
-});
-
-test('test isExecutable() method', function (): void {
-    $filesytem = new Filesystem();
-
-    if (PHP_OS_FAMILY === 'Windows') {
-        $this->markTestSkipped('The operating system is Windows');
-    }
-
-    $filesytem->put($this->tempDir . '/1.txt', 'test');
-
-    $this->assertTrue($filesytem->isExecutable($this->tempDir . '/1.txt'));
 });
 
 test('test isAbsolute method', function (): void {
@@ -165,4 +154,17 @@ test('test chmod() method', function (): void {
     $filePermission = $filesytem->chmod($this->tempDir . '/2.txt');
     $expectedPermissions = DIRECTORY_SEPARATOR == '\\' ? '0666' : '0755';
     $this->assertEquals($expectedPermissions, $filePermission);
+});
+
+test('test copy() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'hello');
+    $this->assertTrue($filesytem->copy($this->tempDir . '/1.txt', $this->tempDir . '/2.txt'));
+});
+
+test('test deleteDirectory() method', function (): void {
+    @mkdir($this->tempDir . '/1');
+
+    $filesytem = new Filesystem();
+    $this->assertTrue($filesytem->deleteDirectory($this->tempDir . '/1'));
 });
