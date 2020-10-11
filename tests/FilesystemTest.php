@@ -180,3 +180,16 @@ test('test cleanDirectory() method', function (): void {
     $this->assertTrue($filesytem->cleanDirectory($this->tempDir . '/1'));
     $this->assertFalse($filesytem->exists($this->tempDir . '/1/1.txt'));
 });
+
+test('test glob() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'hello');
+    $filesytem->put($this->tempDir . '/2.txt', 'world');
+
+    $glob = $filesytem->glob($this->tempDir . '/*.txt');
+    $this->assertContains($this->tempDir . '/1.txt', $glob);
+    $this->assertContains($this->tempDir . '/2.txt', $glob);
+
+    $glob = $filesytem->glob($this->tempDir . '/*.html');
+    $this->assertEquals(0, count($glob));
+});

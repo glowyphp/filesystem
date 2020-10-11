@@ -252,6 +252,19 @@ class Filesystem
     }
 
     /**
+     * Find path names matching a given pattern.
+     *
+     * @param  string  $pattern The pattern.
+     * @param  int     $flags   Valid flags.
+     *
+     * @return array Returns an array containing the matched files/directories, an empty array if no file matched.
+     */
+    public function glob(string $pattern, int $flags = 0): array
+    {
+        return glob($pattern, $flags);
+    }
+
+    /**
      * Copy a file to a new location.
      *
      * @param  string $path        Path to the source file.
