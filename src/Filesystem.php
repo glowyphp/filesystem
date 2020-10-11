@@ -14,6 +14,7 @@ use function copy;
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
+use function filemtime;
 use function fileperms;
 use function filesize;
 use function glob;
@@ -358,5 +359,17 @@ class Filesystem
         }
 
         return $size;
+    }
+
+    /**
+     * Get the file's last modification time.
+     *
+     * @param  string $path Path to the file.
+     *
+     * @return int Returns the time the file was last modified.
+     */
+    public function lastModified(string $path): int
+    {
+        return filemtime($path);
     }
 }

@@ -209,3 +209,12 @@ test('test directorySize() method', function (): void {
 
     $this->assertEquals(22, $filesytem->directorySize($this->tempDir . '/1'));
 });
+
+test('test lastModified() method', function (): void {
+    $filesytem = new Filesystem();
+
+    $filesytem->put($this->tempDir . '/1.txt', 'hello world');
+    $time = filemtime($this->tempDir . '/1.txt');
+
+    $this->assertEquals($time, $filesytem->lastModified($this->tempDir . '/1.txt'));
+});
