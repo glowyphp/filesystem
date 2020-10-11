@@ -279,9 +279,7 @@ class Filesystem
             return false;
         }
 
-        $items = new FilesystemIterator($directory);
-
-        foreach ($items as $item) {
+        foreach (new FilesystemIterator($directory) as $item) {
             if ($item->isDir() && ! $item->isLink()) {
                 $this->deleteDirectory($item->getPathname());
             } else {
