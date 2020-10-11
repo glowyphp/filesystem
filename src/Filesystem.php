@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Atomastic\Filesystem;
 
+use ErrorException as IOException;
+
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
