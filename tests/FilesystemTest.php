@@ -63,6 +63,13 @@ test('test isStream() method', function (): void {
     $this->assertTrue($filesytem->isStream('file://1.txt'));
 });
 
+test('test isExecutable() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'test');
+
+    $this->assertTrue($filesytem->isExecutable($this->tempDir . '/1.txt'));
+});
+
 test('test exists() method', function (): void {
     $filesytem = new Filesystem();
     $filesytem->put($this->tempDir . '/1.txt', 'test');

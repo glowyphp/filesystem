@@ -8,6 +8,7 @@ use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
 use function is_dir;
+use function is_executable;
 use function is_file;
 use function is_readable;
 use function is_writable;
@@ -78,6 +79,18 @@ class Filesystem
     public function isStream(string $path): bool
     {
         return strpos($path, '://') !== false;
+    }
+
+    /**
+     * Returns true if the File is executable.
+     *
+     * @param  string $path Path to check.
+     *
+     * @return bool Returns TRUE if the given path is stream path, FALSE otherwise.
+     */
+    public function isExecutable(string $path): bool
+    {
+        return is_executable($path);
     }
 
     /**
