@@ -13,6 +13,7 @@ use function is_file;
 use function is_readable;
 use function is_writable;
 use function md5_file;
+use function preg_match;
 use function strpos;
 use function unlink;
 
@@ -79,6 +80,18 @@ class Filesystem
     public function isStream(string $path): bool
     {
         return strpos($path, '://') !== false;
+    }
+
+   /**
+    * Determine if the given path is absolute path.
+    *
+    * @param  string $path Path to check.
+    *
+    * @return bool Returns TRUE if the given path is absolute path, FALSE otherwise.
+    */
+    public function isAbsolute(string $path): bool
+    {
+        return (bool) preg_match('#([a-z]:)?[/\\\\]|[a-z][a-z0-9+.-]*://#Ai', $path);
     }
 
     /**

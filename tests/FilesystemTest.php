@@ -70,6 +70,22 @@ test('test isExecutable() method', function (): void {
     $this->assertTrue($filesytem->isExecutable($this->tempDir . '/1.txt'));
 });
 
+test('test isAbsolute method', function (): void {
+    $filesytem = new Filesystem();
+
+    $this->assertFalse($filesytem->isAbsolute(''));
+    $this->assertTrue($filesytem->isAbsolute('\\'));
+    $this->assertTrue($filesytem->isAbsolute('//'));
+    $this->assertFalse($filesytem->isAbsolute('file'));
+    $this->assertFalse($filesytem->isAbsolute('dir:/file'));
+    $this->assertFalse($filesytem->isAbsolute('dir:\file'));
+    $this->assertTrue($filesytem->isAbsolute('c:/file'));
+    $this->assertTrue($filesytem->isAbsolute('c:\file'));
+    $this->assertTrue($filesytem->isAbsolute('C:\file'));
+    $this->assertTrue($filesytem->isAbsolute('http://file'));
+    $this->assertTrue($filesytem->isAbsolute('remote://file'));
+});
+
 test('test exists() method', function (): void {
     $filesytem = new Filesystem();
     $filesytem->put($this->tempDir . '/1.txt', 'test');
