@@ -247,3 +247,11 @@ test('test type() method', function (): void {
     $this->assertEquals('file', $filesytem->type($this->tempDir . '/1.txt'));
     $this->assertEquals('dir', $filesytem->type($this->tempDir));
 });
+
+test('test extension() method', function (): void {
+    $filesytem = new Filesystem();
+
+    $filesytem->put($this->tempDir . '/1.txt', 'hello world');
+
+    $this->assertEquals('txt', $filesytem->extension($this->tempDir . '/1.txt'));
+});

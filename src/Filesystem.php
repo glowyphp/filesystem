@@ -409,4 +409,16 @@ class Filesystem
         return filetype($path);
     }
 
+    /**
+     * Get the file extension from a file path.
+     *
+     * @param  string $path Path to the file.
+     *
+     * @return string The extension of a given file.
+     */
+    public function extension(string $path): string
+    {
+        return pathinfo($path, PATHINFO_EXTENSION);
+    }
+
 }
