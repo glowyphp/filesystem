@@ -86,6 +86,13 @@ test('test isAbsolute method', function (): void {
     $this->assertTrue($filesytem->isAbsolute('remote://file'));
 });
 
+test('test isLink method', function (): void {
+    $filesytem = new Filesystem();
+
+    @symlink($this->tempDir . '/link.txt', 'link');
+    $this->assertTrue($filesytem->isLink('link'));
+});
+
 test('test exists() method', function (): void {
     $filesytem = new Filesystem();
     $filesytem->put($this->tempDir . '/1.txt', 'test');

@@ -107,6 +107,17 @@ class Filesystem
     }
 
     /**
+     * Returns true if the File is symbolic link.
+     *
+     * @param  string $path Path to check.
+     *
+     * @return bool Returns TRUE if the given path is symbolic link, FALSE otherwise.
+     */
+    public function isLink(string $path): bool {
+        return is_link($path);
+    }
+
+    /**
      * Checks the existence of files or directories and returns false if any of them is missing.
      *
      * @param string|string[] $paths A path, or an array of paths to check.
