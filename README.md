@@ -1,6 +1,6 @@
-<h1 align="center">filesytem Component</h1>
+<h1 align="center">Filesytem Component</h1>
 <p align="center">
-filesytem Component provides a fluent, object-oriented interface for storing data globally in a well managed fashion, helping to prevent global meltdown.
+Filesystem Component provide a fluent, object-oriented interface for working with filesystem.
 </p>
 <p align="center">
 <a href="https://github.com/atomastic/filesytem/releases"><img alt="Version" src="https://img.shields.io/github/release/atomastic/filesytem.svg?label=version&color=green"></a> <a href="https://github.com/atomastic/filesytem"><img src="https://img.shields.io/badge/license-MIT-blue.svg?color=green" alt="License"></a> <a href="https://github.com/atomastic/filesytem"><img src="https://img.shields.io/github/downloads/atomastic/filesytem/total.svg?color=green" alt="Total downloads"></a> <img src="https://github.com/atomastic/filesytem/workflows/Static%20Analysis/badge.svg?branch=dev"> <img src="https://github.com/atomastic/filesytem/workflows/Tests/badge.svg">
