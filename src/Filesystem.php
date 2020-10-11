@@ -6,8 +6,8 @@ namespace Atomastic\Filesystem;
 
 use ErrorException as IOException;
 use FilesystemIterator;
-use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 use function chmod;
 use function copy;
@@ -345,7 +345,11 @@ class Filesystem
     {
         $size = 0;
 
-        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, FilesystemIterator::CURRENT_AS_FILEINFO | FilesystemIterator::SKIP_DOTS)) as $splFileInfo) {
+        $flags = FilesystemIterator::CURRENT_AS_FILEINFO | FilesystemIterator::SKIP_DOTS;
+
+        $dirIterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory, $flags));
+
+        foreach ($dirIterator as $splFileInfo) {
             if (! $splFileInfo->isFile()) {
                 continue;
             }
