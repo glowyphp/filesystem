@@ -390,10 +390,23 @@ class Filesystem
     *
     * @param  string $path Path to the file.
     *
-    * @return string|false Get the mime-type of a given file or false if an error occurred.
+    * @return string The mime-type of a given file.
     */
-    public function mimeType(string $path)
+    public function mimeType(string $path): string
     {
         return finfo_file(finfo_open(FILEINFO_MIME_TYPE), $path);
     }
+
+    /**
+     * Get the file type of a given file.
+     *
+     * @param  string $path Path to the file.
+     *
+     * @return string The file type of a given file.
+     */
+    public function type(string $path): string
+    {
+        return filetype($path);
+    }
+
 }

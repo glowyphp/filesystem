@@ -238,3 +238,12 @@ test('test mimeType() method', function (): void {
 
     $this->assertEquals('text/plain', $filesytem->mimeType($this->tempDir . '/1.txt'));
 });
+
+test('test type() method', function (): void {
+    $filesytem = new Filesystem();
+
+    $filesytem->put($this->tempDir . '/1.txt', 'hello world');
+
+    $this->assertEquals('file', $filesytem->type($this->tempDir . '/1.txt'));
+    $this->assertEquals('dir', $filesytem->type($this->tempDir));
+});
