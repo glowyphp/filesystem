@@ -65,6 +65,11 @@ test('test isStream() method', function (): void {
 
 test('test isExecutable() method', function (): void {
     $filesytem = new Filesystem();
+
+    if (PHP_OS_FAMILY === 'Windows') {
+        $this->markTestSkipped('The operating system is Windows');
+    }
+
     $filesytem->put($this->tempDir . '/1.txt', 'test');
 
     $this->assertTrue($filesytem->isExecutable($this->tempDir . '/1.txt'));
