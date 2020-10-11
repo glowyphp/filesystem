@@ -318,4 +318,16 @@ class Filesystem
     {
         return $this->deleteDirectory($directory, true);
     }
+
+    /**
+     * Gets file size.
+     *
+     * @param  string  $path Path to the file.
+     *
+     * @return int Returns the size of the file in bytes
+     */
+    public function size($path): int
+    {
+        return filesize($path);
+    }
 }

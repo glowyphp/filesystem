@@ -193,3 +193,10 @@ test('test glob() method', function (): void {
     $glob = $filesytem->glob($this->tempDir . '/*.html');
     $this->assertEquals(0, count($glob));
 });
+
+test('test size() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'hello world');
+
+    $this->assertEquals(11, $filesytem->size($this->tempDir . '/1.txt', 'hello world'));
+});
