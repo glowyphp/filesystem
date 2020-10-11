@@ -153,8 +153,16 @@ test('test chmod() method', function (): void {
     $filesytem = new Filesystem();
     $filesytem->put($this->tempDir . '/1.txt', 'test');
 
+    // Set
     $filesytem->chmod($this->tempDir . '/1.txt', 0755);
     $filePermission = substr(sprintf('%o', fileperms($this->tempDir . '/1.txt')), -4);
+    $expectedPermissions = DIRECTORY_SEPARATOR == '\\' ? '0666' : '0755';
+    $this->assertEquals($expectedPermissions, $filePermission);
+
+    // Get
+    $filesytem->put($this->tempDir . '/2.txt', 'test');
+    chmod($this->tempDir . '/2.txt', 0755);
+    $filePermission = $filesytem->chmod($this->tempDir . '/2.txt');
     $expectedPermissions = DIRECTORY_SEPARATOR == '\\' ? '0666' : '0755';
     $this->assertEquals($expectedPermissions, $filePermission);
 });
