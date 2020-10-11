@@ -32,16 +32,17 @@ test('test isDirectory() method', function (): void {
 
 test('test isReadable() method', function (): void {
     $filesytem = new Filesystem();
+
+    if (PHP_OS_FAMILY === 'Windows') {
+        $this->markTestSkipped('The operating system is Windows');
+    }
+
     $filesytem->put($this->tempDir . '/1.txt', 'test');
 
-    if (DIRECTORY_SEPARATOR === '\\') {
-        $this->assertTrue($files->isReadable($this->tempDir . '/1.txt'));
-    } else {
-        @chmod($this->tempDir . '/1.txt', 0000);
-        $this->assertFalse($filesytem->isReadable($this->tempDir . '/1.txt'));
-        @chmod($this->tempDir . '/1.txt', 0777);
-        $this->assertTrue($filesytem->isReadable($this->tempDir . '/1.txt'));
-    }
+    @chmod($this->tempDir . '/1.txt', 0000);
+    $this->assertFalse($filesytem->isReadable($this->tempDir . '/1.txt'));
+    @chmod($this->tempDir . '/1.txt', 0777);
+    $this->assertTrue($filesytem->isReadable($this->tempDir . '/1.txt'));
 
     $this->assertFalse($filesytem->isReadable($this->tempDir . '/2.txt'));
 });
