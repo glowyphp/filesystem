@@ -432,4 +432,16 @@ class Filesystem
     {
         return pathinfo($path, PATHINFO_BASENAME);
     }
+
+    /**
+     * Get the file name from a file path.
+     *
+     * @param  string $path Path to the file.
+     *
+     * @return string The file name of a given file.
+     */
+    public function name(string $path)
+    {
+        return pathinfo($path, PATHINFO_FILENAME);
+    }
 }
