@@ -290,9 +290,9 @@ class Filesystem
      *
      * @return bool Returns TRUE on success or FALSE on failure.
      */
-    public function move($path, $target)
+    public function move(string $path, string $destination)
     {
-        return rename($path, $target);
+        return rename($path, $destination);
     }
 
     /**
@@ -345,9 +345,22 @@ class Filesystem
      *
      * @return bool Returns TRUE on success or FALSE on failure.
      */
-    public function createDirectory($path, $mode = 0755, $recursive = false)
+    public function createDirectory(string $path, int $mode = 0755, bool $recursive = false): bool
     {
         return mkdir($path, $mode, $recursive);
+    }
+
+    /**
+     * Move a directory.
+     *
+     * @param  string $path        Path to the directory.
+     * @param  string $destination The destination path.
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
+     */
+    public function moveDirectory(string $path, string $destination): bool
+    {
+        return rename($path, $destination);
     }
 
     /**

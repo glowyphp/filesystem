@@ -173,6 +173,16 @@ test('test createDirectory() method', function (): void {
     $this->assertTrue($filesytem->createDirectory($this->tempDir . '/1'));
 });
 
+test('test moveDirectory() method', function (): void {
+    @mkdir($this->tempDir . '/1');
+    @mkdir($this->tempDir . '/3');
+    @mkdir($this->tempDir . '/4');
+
+    $filesytem = new Filesystem();
+    $this->assertTrue($filesytem->moveDirectory($this->tempDir . '/1', $this->tempDir . '/2'));
+    $this->assertTrue($filesytem->moveDirectory($this->tempDir . '/3', $this->tempDir . '/4'));
+});
+
 test('test deleteDirectory() method', function (): void {
     @mkdir($this->tempDir . '/1');
     @mkdir($this->tempDir . '/1/2');
