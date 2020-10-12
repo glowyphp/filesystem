@@ -14,9 +14,13 @@ use function copy;
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
+use function fileatime;
 use function filemtime;
 use function fileperms;
 use function filesize;
+use function filetype;
+use function finfo_file;
+use function finfo_open;
 use function glob;
 use function is_dir;
 use function is_file;
@@ -24,7 +28,10 @@ use function is_link;
 use function is_readable;
 use function is_writable;
 use function md5_file;
+use function mkdir;
+use function pathinfo;
 use function preg_match;
+use function rename;
 use function rmdir;
 use function sprintf;
 use function strpos;
@@ -32,7 +39,11 @@ use function substr;
 use function unlink;
 
 use const FILE_APPEND;
+use const FILEINFO_MIME_TYPE;
 use const LOCK_EX;
+use const PATHINFO_BASENAME;
+use const PATHINFO_EXTENSION;
+use const PATHINFO_FILENAME;
 
 class Filesystem
 {
@@ -290,7 +301,7 @@ class Filesystem
      *
      * @return bool Returns TRUE on success or FALSE on failure.
      */
-    public function move(string $path, string $destination)
+    public function move(string $path, string $destination): bool
     {
         return rename($path, $destination);
     }
@@ -339,9 +350,9 @@ class Filesystem
     /**
      * Create a directory.
      *
-     * @param  string  $path Path to the directory.
-     * @param  int     $mode The mode is 0777 by default, which means the widest possible access.
-     * @param  bool    $recursive Allows the creation of nested directories specified in the path.
+     * @param  string $path      Path to the directory.
+     * @param  int    $mode      The mode is 0777 by default, which means the widest possible access.
+     * @param  bool   $recursive Allows the creation of nested directories specified in the path.
      *
      * @return bool Returns TRUE on success or FALSE on failure.
      */
@@ -361,6 +372,48 @@ class Filesystem
     public function moveDirectory(string $path, string $destination): bool
     {
         return rename($path, $destination);
+    }
+
+    /**
+     * Copy a directory from one location to another.
+     *
+     * @param  string   $path        Path to the directory.
+     * @param  string   $destination The destination path.
+     * @param  int|null $flags       Flags may be provided which will affect the behavior of some methods.
+     *                               A list of the flags can found under FilesystemIterator predefined constants.
+     *                               https://www.php.net/manual/en/class.filesystemiterator.php#filesystemiterator.constants
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
+     */
+    public function copyDirectory(string $path, string $destination, ?int $flags = null): bool
+    {
+        if (! $this->isDirectory($path)) {
+            return false;
+        }
+
+        if (! $this->isDirectory($destination)) {
+            $this->createDirectory($destination, 0777);
+        }
+
+        $flags = $flags ?: FilesystemIterator::SKIP_DOTS;
+
+        foreach (new FilesystemIterator($path, $flags) as $item) {
+            $target = $destination . '/' . $item->getBasename();
+
+            if ($item->isDir()) {
+                $path = $item->getPathname();
+
+                if (! $this->copyDirectory($path, $target, $flags)) {
+                    return false;
+                }
+            } else {
+                if (! $this->copy($item->getPathname(), $target)) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -426,12 +479,12 @@ class Filesystem
     }
 
     /**
-    * Get the mime-type of a given file.
-    *
-    * @param  string $path Path to the file.
-    *
-    * @return string The mime-type of a given file.
-    */
+     * Get the mime-type of a given file.
+     *
+     * @param  string $path Path to the file.
+     *
+     * @return string The mime-type of a given file.
+     */
     public function mimeType(string $path): string
     {
         return finfo_file(finfo_open(FILEINFO_MIME_TYPE), $path);
@@ -480,7 +533,7 @@ class Filesystem
      *
      * @return string The file name of a given file.
      */
-    public function name(string $path)
+    public function name(string $path): string
     {
         return pathinfo($path, PATHINFO_FILENAME);
     }

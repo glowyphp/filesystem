@@ -183,6 +183,16 @@ test('test moveDirectory() method', function (): void {
     $this->assertTrue($filesytem->moveDirectory($this->tempDir . '/3', $this->tempDir . '/4'));
 });
 
+test('test copyDirectory() method', function (): void {
+    @mkdir($this->tempDir . '/1');
+    @mkdir($this->tempDir . '/3');
+    @mkdir($this->tempDir . '/4');
+
+    $filesytem = new Filesystem();
+    $this->assertTrue($filesytem->copyDirectory($this->tempDir . '/1', $this->tempDir . '/2'));
+    $this->assertTrue($filesytem->copyDirectory($this->tempDir . '/3', $this->tempDir . '/4'));
+});
+
 test('test deleteDirectory() method', function (): void {
     @mkdir($this->tempDir . '/1');
     @mkdir($this->tempDir . '/1/2');
