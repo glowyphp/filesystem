@@ -162,6 +162,12 @@ test('test copy() method', function (): void {
     $this->assertTrue($filesytem->copy($this->tempDir . '/1.txt', $this->tempDir . '/2.txt'));
 });
 
+test('test move() method', function (): void {
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1.txt', 'hello');
+    $this->assertTrue($filesytem->move($this->tempDir . '/1.txt', $this->tempDir . '/2.txt'));
+});
+
 test('test deleteDirectory() method', function (): void {
     @mkdir($this->tempDir . '/1');
     @mkdir($this->tempDir . '/1/2');

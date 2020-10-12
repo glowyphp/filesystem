@@ -283,6 +283,19 @@ class Filesystem
     }
 
     /**
+     * Move a file to a new location.
+     *
+     * @param  string $path        Path to the source file.
+     * @param  string $destination The destination path.
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
+     */
+    public function move($path, $target)
+    {
+        return rename($path, $target);
+    }
+
+    /**
      * Delete a directory.
      *
      * @param  string $directory Directory to delete.
