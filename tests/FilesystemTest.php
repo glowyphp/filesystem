@@ -255,3 +255,11 @@ test('test extension() method', function (): void {
 
     $this->assertEquals('txt', $filesytem->extension($this->tempDir . '/1.txt'));
 });
+
+test('test basename() method', function (): void {
+    $filesytem = new Filesystem();
+
+    $filesytem->put($this->tempDir . '/1.txt', 'hello world');
+
+    $this->assertEquals('1.txt', $filesytem->basename($this->tempDir . '/1.txt'));
+});

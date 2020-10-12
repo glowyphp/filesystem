@@ -421,4 +421,15 @@ class Filesystem
         return pathinfo($path, PATHINFO_EXTENSION);
     }
 
+    /**
+     * Get the trailing name component from a file path.
+     *
+     * @param  string $path Path to the file.
+     *
+     * @return string The trailing name of a given file.
+     */
+    public function basename(string $path): string
+    {
+        return pathinfo($path, PATHINFO_BASENAME);
+    }
 }
