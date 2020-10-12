@@ -168,6 +168,11 @@ test('test move() method', function (): void {
     $this->assertTrue($filesytem->move($this->tempDir . '/1.txt', $this->tempDir . '/2.txt'));
 });
 
+test('test createDirectory() method', function (): void {
+    $filesytem = new Filesystem();
+    $this->assertTrue($filesytem->createDirectory($this->tempDir . '/1'));
+});
+
 test('test deleteDirectory() method', function (): void {
     @mkdir($this->tempDir . '/1');
     @mkdir($this->tempDir . '/1/2');

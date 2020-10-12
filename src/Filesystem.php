@@ -337,6 +337,20 @@ class Filesystem
     }
 
     /**
+     * Create a directory.
+     *
+     * @param  string  $path Path to the directory.
+     * @param  int     $mode The mode is 0777 by default, which means the widest possible access.
+     * @param  bool    $recursive Allows the creation of nested directories specified in the path.
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
+     */
+    public function createDirectory($path, $mode = 0755, $recursive = false)
+    {
+        return mkdir($path, $mode, $recursive);
+    }
+
+    /**
      * Gets file size in bytes.
      *
      * @param  string $path Path to the file.
