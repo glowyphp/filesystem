@@ -295,11 +295,19 @@ test('test basename() method', function (): void {
     $this->assertEquals('1.txt', $filesytem->basename($this->tempDir . '/1.txt'));
 });
 
-
 test('test name() method', function (): void {
     $filesytem = new Filesystem();
 
     $filesytem->put($this->tempDir . '/1.txt', 'hello world');
 
     $this->assertEquals('1', $filesytem->name($this->tempDir . '/1.txt'));
+});
+
+test('test find() method', function (): void {
+    @mkdir($this->tempDir . '/1');
+
+    $filesytem = new Filesystem();
+    $filesytem->put($this->tempDir . '/1/1.txt', 'hello world');
+
+    $this->assertEquals(1, count(iterator_to_array($filesytem->find()->in($this->tempDir)->files()->name('*.txt'), false)));
 });

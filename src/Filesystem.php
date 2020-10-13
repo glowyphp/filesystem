@@ -8,6 +8,7 @@ use ErrorException as IOException;
 use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use Symfony\Component\Finder\Finder;
 
 use function chmod;
 use function copy;
@@ -47,6 +48,14 @@ use const PATHINFO_FILENAME;
 
 class Filesystem
 {
+    /**
+     * Create a Finder instance.
+     */
+    public function find(): Finder
+    {
+        return new Finder();
+    }
+
     /**
      * Determine if the given path is a regular file.
      *
