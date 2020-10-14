@@ -328,6 +328,9 @@ test('test find() method', function (): void {
     $filesytem->file($this->tempDir . '/1/1.txt')->put('hello world');
 
     $this->assertEquals(1, count(iterator_to_array($filesytem->find()->in($this->tempDir)->files()->name('*.txt'), false)));
+
+    // alternative
+    $this->assertEquals(1, count(iterator_to_array((new Filesystem)->find()->in($this->tempDir)->files()->name('*.txt'), false)));
 });
 
 test('test path() method', function (): void {
