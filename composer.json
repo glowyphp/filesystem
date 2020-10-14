@@ -17,6 +17,8 @@
         }
     ],
     "require": {
+        "ext-spl": "*",
+        "ext-fileinfo": "*",
         "php": "^7.3 || ^8.0",
         "symfony/finder": "^5.1"
     },
