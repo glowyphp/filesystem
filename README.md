@@ -86,7 +86,15 @@ $filesytem = filesystem();
 
 | Method | Description |
 |---|---|
-| <a href="#filesytem_directory">`find()`</a> | Create a Finder instance. |
+| <a href="#directory_delete">`delete()`</a> | Delete a directory. |
+| <a href="#directory_clean">`clean()`</a> | Empty the specified directory of all files and directories. |
+| <a href="#directory_create">`create()`</a> | Create a directory. |
+| <a href="#directory_move">`move()`</a> | Move a directory. |
+| <a href="#directory_copy">`copy()`</a> | Copy a directory from one location to another. |
+| <a href="#directory_exists">`exists()`</a> | Checks the existence of directory and returns false if any of them is missing. |
+| <a href="#directory_size">`size()`</a> | Gets size of a given directory in bytes. |
+| <a href="#directory_isDirectory">`isDirectory()`</a> | Determine if the given path is a directory. |
+| <a href="#directory_path">`path()`</a> | Return current path. |
 
 #### Methods Details
 
