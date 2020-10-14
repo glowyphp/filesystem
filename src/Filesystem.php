@@ -77,25 +77,6 @@ class Filesystem
     }
 
     /**
-     * Get/Set UNIX mode of a file or directory.
-     *
-     * @param  string   $path The path to the file or directory.
-     * @param  int|null $mode The mode parameter consists of three octal number components
-     *                        specifying access restrictions for the owner, the user group
-     *                        in which the owner is in, and to everybody else in this order.
-     *
-     * @return mixed
-     */
-    public function chmod(string $path, ?int $mode = null)
-    {
-        if ($mode) {
-            return chmod($path, $mode);
-        }
-
-        return substr(sprintf('%o', fileperms($path)), -4);
-    }
-
-    /**
      * Find path names matching a given pattern.
      *
      * @param  string $pattern The pattern.

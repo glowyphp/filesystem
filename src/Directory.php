@@ -199,4 +199,22 @@ class Directory
     {
         return $this->path;
     }
+
+    /**
+     * Get/Set UNIX mode of a directory.
+     *
+     * @param  int|null $mode The mode parameter consists of three octal number components
+     *                        specifying access restrictions for the owner, the user group
+     *                        in which the owner is in, and to everybody else in this order.
+     *
+     * @return mixed
+     */
+    public function chmod(?int $mode = null)
+    {
+        if ($mode) {
+            return chmod($this->path, $mode);
+        }
+
+        return substr(sprintf('%o', fileperms($this->path)), -4);
+    }
 }
