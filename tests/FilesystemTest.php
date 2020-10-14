@@ -153,7 +153,7 @@ test('test chmod() method', function (): void {
     $filesytem->file($this->tempDir . '/1.txt')->put('test');
 
     // Set
-    $filesytem->chmod($this->tempDir . '/1.txt', 0755);
+    $filesytem->file($this->tempDir . '/1.txt')->chmod(0755);
     $filePermission      = substr(sprintf('%o', fileperms($this->tempDir . '/1.txt')), -4);
     $expectedPermissions = DIRECTORY_SEPARATOR === '\\' ? '0666' : '0755';
     $this->assertEquals($expectedPermissions, $filePermission);
@@ -161,10 +161,27 @@ test('test chmod() method', function (): void {
     // Get
     $filesytem->file($this->tempDir . '/2.txt')->put('test');
     chmod($this->tempDir . '/2.txt', 0755);
-    $filePermission      = $filesytem->chmod($this->tempDir . '/2.txt');
+    $filePermission      = $filesytem->file($this->tempDir . '/1.txt')->chmod();
     $expectedPermissions = DIRECTORY_SEPARATOR === '\\' ? '0666' : '0755';
     $this->assertEquals($expectedPermissions, $filePermission);
 });
+
+test('test directory chmod() method', function (): void {
+    $filesytem = new Filesystem();
+
+    // Set
+    $filesytem->directory($this->tempDir)->chmod(0755);
+    $filePermission      = substr(sprintf('%o', fileperms($this->tempDir)), -4);
+    $expectedPermissions = DIRECTORY_SEPARATOR === '\\' ? '0666' : '0755';
+    $this->assertEquals($expectedPermissions, $filePermission);
+
+    // Get
+    chmod($this->tempDir, 0755);
+    $filePermission      = $filesytem->directory($this->tempDir)->chmod();
+    $expectedPermissions = DIRECTORY_SEPARATOR === '\\' ? '0666' : '0755';
+    $this->assertEquals($expectedPermissions, $filePermission);
+});
+
 
 test('test copy() method', function (): void {
     $filesytem = new Filesystem();
