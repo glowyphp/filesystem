@@ -281,7 +281,7 @@ public function delete(): bool
 ##### Example
 
 ```php  
-$filesytem->file($this->tempDir . '/1.txt')->delete();
+$filesytem->file('/foo/1.txt')->delete();
 ```
 
 #### Directory
