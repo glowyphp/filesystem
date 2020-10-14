@@ -11,7 +11,7 @@ Filesystem Component provide a fluent, object-oriented interface for working wit
 
 * [Installation](#installation)
 * [Usage](#usage)
-* [Methods](#methods)
+* [Filesystem Methods](#filesystem-methods)
 * [Tests](#tests)
 * [License](#license)
 
@@ -26,20 +26,27 @@ composer require atomastic/filesystem
 ### Usage
 
 ```php
-use Atomastic\Filesytem\Filesytem;
+use Atomastic\Filesystem\Filesystem;
 
-// Using public static method getInstance()
-$filesytem = new Filesytem();
+// Create a Filesystem instance.
+$filesystem = new Filesystem();
 
-// Using global helper function filesytem() thats returns Filesytem::getInstance()
-$filesytem = filesytem();
+// Using global helper function filesystem()
+$filesytem = filesystem();
 ```
 
-### Methods
+### Filesystem Methods
 
 | Method | Description |
 |---|---|
-| <a href="#filesytem_">`getInstance()`</a> | Gets the instance via lazy initialization (created on first usage) |
+| <a href="#filesytem_find">`find()`</a> | Create a Finder instance. |
+| <a href="#filesytem_file">`file()`</a> | Create a File instance. |
+| <a href="#filesytem_directory">`directory()`</a> | Create a Directory instance. |
+| <a href="#filesytem_isStream">`isStream()`</a> | Determine if the given path is a stream path. |
+| <a href="#filesytem_isAbsolute">`isAbsolute()`</a> | Determine if the given path is absolute path. |
+| <a href="#filesytem_isWindowsPath">`isWindowsPath()`</a> | Determine if the given path is a Windows path. |
+| <a href="#filesytem_chmod">`chmod()`</a> | Get/Set UNIX mode of a file or directory. |
+| <a href="#filesytem_glob">`glob()`</a> | Find path names matching a given pattern. |
 
 #### Methods Details
 
