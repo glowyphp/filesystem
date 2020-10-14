@@ -36,9 +36,6 @@ $filesystem = new Filesystem();
 
 // Using global helper function filesystem()
 $filesystem = filesystem();
-
-// and more alternative
-(new Filesystem)->methodName();
 ```
 
 ### Methods
@@ -47,7 +44,6 @@ $filesystem = filesystem();
 
 | Method | Description |
 |---|---|
-| <a href="#filesytem_chmod">`chmod()`</a> | Get/Set UNIX mode of a file or directory. |
 | <a href="#filesytem_directory">`directory()`</a> | Create a Directory instance. |
 | <a href="#filesytem_find">`find()`</a> | Create a Finder instance. |
 | <a href="#filesytem_file">`file()`</a> | Create a File instance. |
@@ -58,8 +54,22 @@ $filesystem = filesystem();
 
 #### Methods Details
 
+##### <a name="filesytem_directory"></a> Method: `directory()`
 
-##### <a name="arrays_find"></a> Method: `find()`
+```php
+/**
+ * Create a Directory instance.
+ */
+public function directory($path): Directory
+```
+
+##### Example
+
+```php  
+$directory = $filesystem->directory('/foo');
+```
+
+##### <a name="filesytem_find"></a> Method: `find()`
 
 ```php
 /**
@@ -70,8 +80,23 @@ public function find(): Finder
 
 ##### Example
 
+```php  
+$result = $filesystem->find()->in('/foo')->files()->name('*.txt');
+```
+
+##### <a name="filesytem_file"></a> Method: `file()`
+
 ```php
-$result = (new Filesystem)->find()->in('/foo')->files()->name('*.txt');
+/**
+ * Create a File instance.
+ */
+public function file($path): File
+```
+
+##### Example
+
+```php  
+$file = $filesystem->file('/foo/1.txt');
 ```
 
 #### File
@@ -100,6 +125,32 @@ $result = (new Filesystem)->find()->in('/foo')->files()->name('*.txt');
 | <a href="#file_isFile">`isFile()`</a> | Determine if the given path is a regular file. |
 
 #### Methods Details
+
+
+##### <a name="filesytem_chmod"></a> Method: `chmod()`
+
+```php
+/**
+ * Get/Set UNIX mode of a file.
+ *
+ * @param  int|null $mode The mode parameter consists of three octal number components
+ *                        specifying access restrictions for the owner, the user group
+ *                        in which the owner is in, and to everybody else in this order.
+ *
+ * @return mixed
+ */
+public function chmod(?int $mode = null)
+```
+
+##### Example
+
+```php  
+// Set chmod
+$filesytem->file('/foo/1.txt')->chmod(0755);
+
+// Get chmod
+$result = $filesytem->file('/foo/1.txt')->chmod();
+```
 
 #### Directory
 
