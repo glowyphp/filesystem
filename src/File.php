@@ -170,7 +170,7 @@ class File
      */
     public function mimeType(): string
     {
-        return mime_content_type($this->path);
+        return finfo_file(finfo_open(FILEINFO_MIME_TYPE), $this->path);
     }
 
     /**
