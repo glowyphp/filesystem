@@ -189,7 +189,6 @@ test('test directory create() method', function (): void {
 test('test directory move() method', function (): void {
     @mkdir($this->tempDir . '/1');
     @mkdir($this->tempDir . '/3');
-    @mkdir($this->tempDir . '/4');
 
     $filesytem = new Filesystem();
     $this->assertTrue($filesytem->directory($this->tempDir . '/1')->move($this->tempDir . '/2'));
