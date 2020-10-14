@@ -99,6 +99,65 @@ public function file($path): File
 $file = $filesystem->file('/foo/1.txt');
 ```
 
+##### <a name="filesytem_isAbsolute"></a> Method: `isAbsolute()`
+
+```php
+/**
+ * Determine if the given path is absolute path.
+ *
+ * @param  string $path Path to check.
+ *
+ * @return bool Returns TRUE if the given path is absolute path, FALSE otherwise.
+ */
+ public function isAbsolute(string $path): bool
+```
+
+##### Example
+
+```php  
+$result = $filesytem->isAbsolute('c:\file');
+```
+
+##### <a name="filesytem_isWindowsPath"></a> Method: `isWindowsPath()`
+
+```php
+/**
+ * Determine if the given path is a Windows path.
+ *
+ * @param  string $path Path to check.
+ *
+ * @return bool true if windows path, false otherwise
+ */
+public function isWindowsPath(string $path): bool
+```
+
+##### Example
+
+```php  
+$result = $filesytem->isWindowsPath('c:\file');
+```
+
+
+##### <a name="filesytem_glob"></a> Method: `glob()`
+
+```php
+/**
+ * Find path names matching a given pattern.
+ *
+ * @param  string $pattern The pattern.
+ * @param  int    $flags   Valid flags.
+ *
+ * @return array Returns an array containing the matched files/directories, an empty array if no file matched.
+ */
+public function glob(string $pattern, int $flags = 0): array
+```
+
+##### Example
+
+```php  
+$result = $filesytem->glob($this->tempDir . '/*.html');
+```
+
 #### File
 
 | Method | Description |
