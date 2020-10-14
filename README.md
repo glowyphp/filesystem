@@ -17,6 +17,8 @@ Filesystem Component provide a fluent, object-oriented interface for working wit
 
 ### Installation
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/990baa96ada542f9ae21a41c2a25ddf9)](https://app.codacy.com/gh/atomastic/filesystem?utm_source=github.com&utm_medium=referral&utm_content=atomastic/filesystem&utm_campaign=Badge_Grade)
+
 #### With [Composer](https://getcomposer.org)
 
 ```
