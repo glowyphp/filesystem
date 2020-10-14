@@ -264,7 +264,24 @@ public function copy(string $destination): bool
 ##### Example
 
 ```php  
-$filesytem->file('/foo/1.txt')->copy('/foo/2.txt')
+$filesytem->file('/foo/1.txt')->copy('/foo/2.txt');
+```
+
+##### <a name="file_delete"></a> Method: `delete()`
+
+```php
+/**
+ * Delete the file at a given path.
+ *
+ * @return bool Returns true or false if any of them is failure.
+ */
+public function delete(): bool
+```
+
+##### Example
+
+```php  
+$filesytem->file($this->tempDir . '/1.txt')->delete();
 ```
 
 #### Directory
