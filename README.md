@@ -11,7 +11,8 @@ Filesystem Component provide a fluent, object-oriented interface for working wit
 
 * [Installation](#installation)
 * [Usage](#usage)
-* [Filesystem Methods](#filesystem-methods)
+* [Methods](#methods)
+ - [Filesystem](#filesystem)
 * [Tests](#tests)
 * [License](#license)
 
@@ -35,7 +36,9 @@ $filesystem = new Filesystem();
 $filesytem = filesystem();
 ```
 
-### Filesystem Methods
+### Methods
+
+#### Filesystem
 
 | Method | Description |
 |---|---|
