@@ -12,7 +12,9 @@ Filesystem Component provide a fluent, object-oriented interface for working wit
 * [Installation](#installation)
 * [Usage](#usage)
 * [Methods](#methods)
- - [Filesystem](#filesystem)
+  - [Filesystem](#filesystem)
+  - [File](#file)
+  - [Directory](#directory)
 * [Tests](#tests)
 * [License](#license)
 
