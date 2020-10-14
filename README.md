@@ -164,6 +164,7 @@ $result = $filesytem->glob($this->tempDir . '/*.html');
 |---|---|
 | <a href="#file_append">`append()`</a> | Append to a file. |
 | <a href="#file_basename">`basename()`</a> | Get the trailing name component from a file path. |
+| <a href="#file_chmod">`chmod()`</a> |  Get/Set UNIX mode of a file. |
 | <a href="#file_copy">`copy()`</a> | Copy a file to a new location. |
 | <a href="#file_delete">`delete()`</a> | Delete the file at a given path. |
 | <a href="#file_exists">`exists()`</a> | Checks the existence of file and returns false if any of them is missing. |
@@ -185,8 +186,43 @@ $result = $filesytem->glob($this->tempDir . '/*.html');
 
 #### Methods Details
 
+##### <a name="file_append"></a> Method: `append()`
 
-##### <a name="filesytem_chmod"></a> Method: `chmod()`
+```php
+/**
+ * Append to a file.
+ *
+ * @param  string $data The data to write.
+ *
+ * @return int|bool Returns the number of bytes that were written to the file, or FALSE on failure.
+ */
+public function append(string $data)
+```
+
+##### Example
+
+```php  
+$filesytem->file('/foo/1.txt')->append(' world');
+```
+
+##### <a name="file_basename"></a> Method: `basename()`
+
+```php
+/**
+ * Get the trailing name component from a file path.
+ *
+ * @return string The trailing name of a given file.
+ */
+public function basename(): string
+```
+
+##### Example
+
+```php  
+$result = $filesytem->file($this->tempDir . '/1.txt')->basename();
+```
+
+##### <a name="file_chmod"></a> Method: `chmod()`
 
 ```php
 /**
@@ -211,11 +247,32 @@ $filesytem->file('/foo/1.txt')->chmod(0755);
 $result = $filesytem->file('/foo/1.txt')->chmod();
 ```
 
+##### <a name="file_copy"></a> Method: `copy()`
+
+```php
+/**
+ * Copy a file to a new location.
+ *
+ * @param  string $destination The destination path.
+ *                             If the destination file already exists, it will be overwritten.
+ *
+ * @return bool Returns TRUE on success or FALSE on failure.
+ */
+public function copy(string $destination): bool
+```
+
+##### Example
+
+```php  
+$filesytem->file('/foo/1.txt')->copy('/foo/2.txt')
+```
+
 #### Directory
 
 | Method | Description |
 |---|---|
 | <a href="#directory_clean">`clean()`</a> | Empty the specified directory of all files and directories. |
+| <a href="#file_chmod">`chmod()`</a> |  Get/Set UNIX mode of a directory. |
 | <a href="#directory_copy">`copy()`</a> | Copy a directory from one location to another. |
 | <a href="#directory_create">`create()`</a> | Create a directory. |
 | <a href="#directory_delete">`delete()`</a> | Delete a directory. |
