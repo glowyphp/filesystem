@@ -55,6 +55,41 @@ $filesytem = filesystem();
 
 #### Methods Details
 
+#### File
+
+| Method | Description |
+|---|---|
+| <a href="#file_put">`put()`</a> | Write the contents of a file. |
+| <a href="#file_get">`get()`</a> | Get the contents of a file. |
+| <a href="#file_prepend">`prepend()`</a> | Prepend to a file. |
+| <a href="#file_append">`append()`</a> | Append to a file. |
+| <a href="#file_delete">`delete()`</a> | Delete the file at a given path. |
+| <a href="#file_exists">`exists()`</a> | Checks the existence of file and returns false if any of them is missing. |
+| <a href="#file_lastModified">`lastModified()`</a> | Get the file's last modification time. |
+| <a href="#file_lastAccess">`lastAccess()`</a> | Get the file's last access time. |
+| <a href="#file_mimeType">`mimeType()`</a> | Get the mime-type of a given file. |
+| <a href="#file_type">`type()`</a> | Get the file type of a given file. |
+| <a href="#file_extension">`extension()`</a> | Get the file extension from a file path. |
+| <a href="#file_basename">`basename()`</a> | Get the trailing name component from a file path. |
+| <a href="#file_name">`name()`</a> | Get the file name from a file path. |
+| <a href="#file_path">`path()`</a> | Return current path. |
+| <a href="#file_copy">`copy()`</a> | Copy a file to a new location. |
+| <a href="#file_size">`size()`</a> | Gets file size in bytes. |
+| <a href="#file_hash">`hash()`</a> | Get the MD5 hash of the file at the given path. |
+| <a href="#file_isReadable">`isReadable()`</a> | Determine if the given path is readable. |
+| <a href="#file_isWritable">`isWritable()`</a> | Determine if the given path is writable. |
+| <a href="#file_isFile">`isFile()`</a> | Determine if the given path is a regular file. |
+
+#### Methods Details
+
+#### Directory
+
+| Method | Description |
+|---|---|
+| <a href="#filesytem_directory">`find()`</a> | Create a Finder instance. |
+
+#### Methods Details
+
 ### Tests
 
 Run tests
