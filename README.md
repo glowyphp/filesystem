@@ -162,26 +162,26 @@ $result = $filesytem->glob($this->tempDir . '/*.html');
 
 | Method | Description |
 |---|---|
-| <a href="#file_put">`put()`</a> | Write the contents of a file. |
-| <a href="#file_get">`get()`</a> | Get the contents of a file. |
-| <a href="#file_prepend">`prepend()`</a> | Prepend to a file. |
 | <a href="#file_append">`append()`</a> | Append to a file. |
+| <a href="#file_basename">`basename()`</a> | Get the trailing name component from a file path. |
+| <a href="#file_copy">`copy()`</a> | Copy a file to a new location. |
 | <a href="#file_delete">`delete()`</a> | Delete the file at a given path. |
 | <a href="#file_exists">`exists()`</a> | Checks the existence of file and returns false if any of them is missing. |
 | <a href="#file_lastModified">`lastModified()`</a> | Get the file's last modification time. |
 | <a href="#file_lastAccess">`lastAccess()`</a> | Get the file's last access time. |
-| <a href="#file_mimeType">`mimeType()`</a> | Get the mime-type of a given file. |
-| <a href="#file_type">`type()`</a> | Get the file type of a given file. |
 | <a href="#file_extension">`extension()`</a> | Get the file extension from a file path. |
-| <a href="#file_basename">`basename()`</a> | Get the trailing name component from a file path. |
-| <a href="#file_name">`name()`</a> | Get the file name from a file path. |
-| <a href="#file_path">`path()`</a> | Return current path. |
-| <a href="#file_copy">`copy()`</a> | Copy a file to a new location. |
-| <a href="#file_size">`size()`</a> | Gets file size in bytes. |
+| <a href="#file_get">`get()`</a> | Get the contents of a file. |
 | <a href="#file_hash">`hash()`</a> | Get the MD5 hash of the file at the given path. |
+| <a href="#file_isFile">`isFile()`</a> | Determine if the given path is a regular file. |
 | <a href="#file_isReadable">`isReadable()`</a> | Determine if the given path is readable. |
 | <a href="#file_isWritable">`isWritable()`</a> | Determine if the given path is writable. |
-| <a href="#file_isFile">`isFile()`</a> | Determine if the given path is a regular file. |
+| <a href="#file_mimeType">`mimeType()`</a> | Get the mime-type of a given file. |
+| <a href="#file_name">`name()`</a> | Get the file name from a file path. |
+| <a href="#file_path">`path()`</a> | Return current path. |
+| <a href="#file_prepend">`prepend()`</a> | Prepend to a file. |
+| <a href="#file_put">`put()`</a> | Write the contents of a file. |
+| <a href="#file_size">`size()`</a> | Gets file size in bytes. |
+| <a href="#file_type">`type()`</a> | Get the file type of a given file. |
 
 #### Methods Details
 
@@ -215,15 +215,15 @@ $result = $filesytem->file('/foo/1.txt')->chmod();
 
 | Method | Description |
 |---|---|
-| <a href="#directory_delete">`delete()`</a> | Delete a directory. |
 | <a href="#directory_clean">`clean()`</a> | Empty the specified directory of all files and directories. |
-| <a href="#directory_create">`create()`</a> | Create a directory. |
-| <a href="#directory_move">`move()`</a> | Move a directory. |
 | <a href="#directory_copy">`copy()`</a> | Copy a directory from one location to another. |
+| <a href="#directory_create">`create()`</a> | Create a directory. |
+| <a href="#directory_delete">`delete()`</a> | Delete a directory. |
 | <a href="#directory_exists">`exists()`</a> | Checks the existence of directory and returns false if any of them is missing. |
-| <a href="#directory_size">`size()`</a> | Gets size of a given directory in bytes. |
 | <a href="#directory_isDirectory">`isDirectory()`</a> | Determine if the given path is a directory. |
+| <a href="#directory_move">`move()`</a> | Move a directory. |
 | <a href="#directory_path">`path()`</a> | Return current path. |
+| <a href="#directory_size">`size()`</a> | Gets size of a given directory in bytes. |
 
 #### Methods Details
 
