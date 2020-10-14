@@ -176,7 +176,8 @@ test('test copy() method', function (): void {
 test('test move() method', function (): void {
     $filesytem = new Filesystem();
     $filesytem->file($this->tempDir . '/1.txt')->put('hello');
-    $this->assertTrue($filesytem->file($this->tempDir . '/1.txt')->move($this->tempDir . '/2.txt'));
+    $filesytem->file($this->tempDir . '/1.txt')->move($this->tempDir . '/2.txt');
+    $this->assertTrue($filesytem->file($this->tempDir . '/2.txt')->exists());
 });
 
 test('test directory create() method', function (): void {
