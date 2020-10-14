@@ -35,7 +35,10 @@ use Atomastic\Filesystem\Filesystem;
 $filesystem = new Filesystem();
 
 // Using global helper function filesystem()
-$filesytem = filesystem();
+$filesystem = filesystem();
+
+// and more alternative
+(new Filesystem)->methodName();
 ```
 
 ### Methods
@@ -44,16 +47,32 @@ $filesytem = filesystem();
 
 | Method | Description |
 |---|---|
+| <a href="#filesytem_chmod">`chmod()`</a> | Get/Set UNIX mode of a file or directory. |
+| <a href="#filesytem_directory">`directory()`</a> | Create a Directory instance. |
 | <a href="#filesytem_find">`find()`</a> | Create a Finder instance. |
 | <a href="#filesytem_file">`file()`</a> | Create a File instance. |
-| <a href="#filesytem_directory">`directory()`</a> | Create a Directory instance. |
-| <a href="#filesytem_isStream">`isStream()`</a> | Determine if the given path is a stream path. |
 | <a href="#filesytem_isAbsolute">`isAbsolute()`</a> | Determine if the given path is absolute path. |
+| <a href="#filesytem_isStream">`isStream()`</a> | Determine if the given path is a stream path. |
 | <a href="#filesytem_isWindowsPath">`isWindowsPath()`</a> | Determine if the given path is a Windows path. |
-| <a href="#filesytem_chmod">`chmod()`</a> | Get/Set UNIX mode of a file or directory. |
 | <a href="#filesytem_glob">`glob()`</a> | Find path names matching a given pattern. |
 
 #### Methods Details
+
+
+##### <a name="arrays_find"></a> Method: `find()`
+
+```php
+/**
+ * Create a Finder instance.
+ */
+public function find(): Finder
+```
+
+##### Example
+
+```php
+$result = (new Filesystem)->find()->in('/foo')->files()->name('*.txt');
+```
 
 #### File
 
