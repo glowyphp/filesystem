@@ -71,7 +71,7 @@ class Filesystem
      *
      * @return bool true if windows path, false otherwise
      */
-    public static function isWindowsPath(string $path): bool
+    public function isWindowsPath(string $path): bool
     {
         return preg_match('/^[A-Z]:\\\\/i', $path) || substr($path, 0, 2) === '\\\\';
     }
