@@ -45,7 +45,7 @@ class File
     /**
      * Constructor
      *
-     * @param string $path Path to file
+     * @param string $path Path to file.
      */
     public function __construct(string $path)
     {

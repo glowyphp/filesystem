@@ -28,7 +28,7 @@ class Directory
     /**
      * Constructor
      *
-     * @param string $path Path to directory
+     * @param string $path Path to directory.
      */
     public function __construct(string $path)
     {

@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 use Atomastic\Filesystem\Filesystem;
+use Atomastic\Filesystem\File;
+use Atomastic\Filesystem\Directory;
 
 beforeEach(function (): void {
     $this->tempDir = __DIR__ . '/tmp';
@@ -13,6 +15,16 @@ afterEach(function (): void {
     $filesytem = new Filesystem();
     $filesytem->directory($this->tempDir)->delete();
     unset($this->tempDir);
+});
+
+test('test instances', function (): void {
+    $this->assertInstanceOf(Filesystem::class, new Filesystem);
+    $this->assertInstanceOf(File::class, new File('/1/1.txt'));
+    $this->assertInstanceOf(Directory::class, new Directory('/1'));
+});
+
+test('test filesytem helper', function (): void {
+    $this->assertInstanceOf(Filesystem::class, filesystem());
 });
 
 test('test deleteDirectory() method', function (): void {
