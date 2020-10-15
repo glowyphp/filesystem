@@ -44,17 +44,17 @@ $filesystem = filesystem();
 
 | Method | Description |
 |---|---|
-| <a href="#filesytem_directory">`directory()`</a> | Create a Directory instance. |
-| <a href="#filesytem_find">`find()`</a> | Create a Finder instance. |
-| <a href="#filesytem_file">`file()`</a> | Create a File instance. |
-| <a href="#filesytem_isAbsolute">`isAbsolute()`</a> | Determine if the given path is absolute path. |
-| <a href="#filesytem_isStream">`isStream()`</a> | Determine if the given path is a stream path. |
-| <a href="#filesytem_isWindowsPath">`isWindowsPath()`</a> | Determine if the given path is a Windows path. |
-| <a href="#filesytem_glob">`glob()`</a> | Find path names matching a given pattern. |
+| <a href="#filesystem_directory">`directory()`</a> | Create a Directory instance. |
+| <a href="#filesystem_find">`find()`</a> | Create a Finder instance. |
+| <a href="#filesystem_file">`file()`</a> | Create a File instance. |
+| <a href="#filesystem_isAbsolute">`isAbsolute()`</a> | Determine if the given path is absolute path. |
+| <a href="#filesystem_isStream">`isStream()`</a> | Determine if the given path is a stream path. |
+| <a href="#filesystem_isWindowsPath">`isWindowsPath()`</a> | Determine if the given path is a Windows path. |
+| <a href="#filesystem_glob">`glob()`</a> | Find path names matching a given pattern. |
 
 #### Methods Details
 
-##### <a name="filesytem_directory"></a> Method: `directory()`
+##### <a name="filesystem_directory"></a> Method: `directory()`
 
 ```php
 /**
@@ -69,7 +69,7 @@ public function directory($path): Directory
 $directory = $filesystem->directory('/foo');
 ```
 
-##### <a name="filesytem_find"></a> Method: `find()`
+##### <a name="filesystem_find"></a> Method: `find()`
 
 ```php
 /**
@@ -84,7 +84,7 @@ public function find(): Finder
 $result = $filesystem->find()->in('/foo')->files()->name('*.txt');
 ```
 
-##### <a name="filesytem_file"></a> Method: `file()`
+##### <a name="filesystem_file"></a> Method: `file()`
 
 ```php
 /**
@@ -99,7 +99,7 @@ public function file($path): File
 $file = $filesystem->file('/foo/1.txt');
 ```
 
-##### <a name="filesytem_isAbsolute"></a> Method: `isAbsolute()`
+##### <a name="filesystem_isAbsolute"></a> Method: `isAbsolute()`
 
 ```php
 /**
@@ -115,10 +115,10 @@ $file = $filesystem->file('/foo/1.txt');
 ##### Example
 
 ```php  
-$result = $filesytem->isAbsolute('c:\file');
+$result = $filesystem->isAbsolute('c:\file');
 ```
 
-##### <a name="filesytem_isWindowsPath"></a> Method: `isWindowsPath()`
+##### <a name="filesystem_isWindowsPath"></a> Method: `isWindowsPath()`
 
 ```php
 /**
@@ -134,11 +134,11 @@ public function isWindowsPath(string $path): bool
 ##### Example
 
 ```php  
-$result = $filesytem->isWindowsPath('c:\file');
+$result = $filesystem->isWindowsPath('c:\file');
 ```
 
 
-##### <a name="filesytem_glob"></a> Method: `glob()`
+##### <a name="filesystem_glob"></a> Method: `glob()`
 
 ```php
 /**
@@ -155,7 +155,7 @@ public function glob(string $pattern, int $flags = 0): array
 ##### Example
 
 ```php  
-$result = $filesytem->glob($this->tempDir . '/*.html');
+$result = $filesystem->glob($this->tempDir . '/*.html');
 ```
 
 #### File
@@ -202,7 +202,7 @@ public function append(string $data)
 ##### Example
 
 ```php  
-$filesytem->file('/foo/1.txt')->append(' world');
+$filesystem->file('/foo/1.txt')->append(' world');
 ```
 
 ##### <a name="file_basename"></a> Method: `basename()`
@@ -219,7 +219,7 @@ public function basename(): string
 ##### Example
 
 ```php  
-$result = $filesytem->file($this->tempDir . '/1.txt')->basename();
+$result = $filesystem->file($this->tempDir . '/1.txt')->basename();
 ```
 
 ##### <a name="file_chmod"></a> Method: `chmod()`
@@ -241,10 +241,10 @@ public function chmod(?int $mode = null)
 
 ```php  
 // Set chmod
-$filesytem->file('/foo/1.txt')->chmod(0755);
+$filesystem->file('/foo/1.txt')->chmod(0755);
 
 // Get chmod
-$result = $filesytem->file('/foo/1.txt')->chmod();
+$result = $filesystem->file('/foo/1.txt')->chmod();
 ```
 
 ##### <a name="file_copy"></a> Method: `copy()`
@@ -264,7 +264,7 @@ public function copy(string $destination): bool
 ##### Example
 
 ```php  
-$filesytem->file('/foo/1.txt')->copy('/foo/2.txt');
+$filesystem->file('/foo/1.txt')->copy('/foo/2.txt');
 ```
 
 ##### <a name="file_delete"></a> Method: `delete()`
@@ -281,7 +281,7 @@ public function delete(): bool
 ##### Example
 
 ```php  
-$filesytem->file('/foo/1.txt')->delete();
+$filesystem->file('/foo/1.txt')->delete();
 ```
 
 #### Directory
@@ -289,7 +289,7 @@ $filesytem->file('/foo/1.txt')->delete();
 | Method | Description |
 |---|---|
 | <a href="#directory_clean">`clean()`</a> | Empty the specified directory of all files and directories. |
-| <a href="#file_chmod">`chmod()`</a> |  Get/Set UNIX mode of a directory. |
+| <a href="#directory_chmod">`chmod()`</a> |  Get/Set UNIX mode of a directory. |
 | <a href="#directory_copy">`copy()`</a> | Copy a directory from one location to another. |
 | <a href="#directory_create">`create()`</a> | Create a directory. |
 | <a href="#directory_delete">`delete()`</a> | Delete a directory. |
@@ -301,6 +301,199 @@ $filesytem->file('/foo/1.txt')->delete();
 
 #### Methods Details
 
+##### <a name="directory_clean"></a> Method: `clean()`
+
+```php
+/**
+ * Empty the specified directory of all files and directories.
+ *
+ * @param  string $directory Directory to cleanup.
+ *
+ * @return bool Returns TRUE on success or FALSE on failure.
+ */
+public function clean(): bool
+```
+
+##### Example
+
+```php  
+$filesystem->directory($this->tempDir . '/1')->clean();
+```
+
+##### <a name="directory_chmod"></a> Method: `chmod()`
+
+```php
+/**
+ * Get/Set UNIX mode of a directory.
+ *
+ * @param  int|null $mode The mode parameter consists of three octal number components
+ *                        specifying access restrictions for the owner, the user group
+ *                        in which the owner is in, and to everybody else in this order.
+ *
+ * @return mixed
+ */
+public function chmod(?int $mode = null)
+```
+
+##### Example
+
+```php  
+// Set chmod
+$filesystem->directory('/foo')->chmod(0755);
+
+// Get chmod
+$result = $filesystem->directory('/foo')->chmod();
+```
+
+##### <a name="directory_copy"></a> Method: `copy()`
+
+```php
+/**
+ * Copy a directory from one location to another.
+ *
+ * @param  string   $destination The destination path.
+ * @param  int|null $flags       Flags may be provided which will affect the behavior of some methods.
+ *                               A list of the flags can found under FilesystemIterator predefined constants.
+ *                               https://www.php.net/manual/en/class.filesystemiterator.php#filesystemiterator.constants
+ *
+ * @return bool Returns TRUE on success or FALSE on failure.
+ */
+public function copy(string $destination, ?int $flags = null): bool
+```
+
+##### Example
+
+```php  
+$filesystem->directory('/foo')->copy('/bar');
+```
+
+##### <a name="directory_create"></a> Method: `create()`
+
+```php
+/**
+ * Create a directory.
+ *
+ * @param  int  $mode      The mode is 0777 by default, which means the widest possible access.
+ * @param  bool $recursive Allows the creation of nested directories specified in the path.
+ *
+ * @return bool Returns TRUE on success or FALSE on failure.
+ */
+public function create(int $mode = 0755, bool $recursive = false): bool
+```
+
+##### Example
+
+```php  
+$filesystem->directory('/foo')->create();
+```
+
+##### <a name="directory_delete"></a> Method: `delete()`
+
+```php
+/**
+ * Delete a directory.
+ *
+ * @param  string $directory Directory to delete.
+ * @param  bool   $preserve  The directory itself may be optionally preserved.
+ *
+ * @return bool Returns TRUE on success or FALSE on failure.
+ */
+public function delete(bool $preserve = false): bool
+```
+
+##### Example
+
+```php  
+$filesystem->directory('/foo')->delete();
+```
+
+##### <a name="directory_exists"></a> Method: `exists()`
+
+```php
+/**
+ * Checks the existence of directory and returns false if any of them is missing.
+ *
+ * @return bool Returns true or false if any of them is missing.
+ */
+public function exists(): bool
+```
+
+##### Example
+
+```php  
+$result = $filesystem->directory('/foo')->exists();
+```
+
+##### <a name="directory_isDirectory"></a> Method: `isDirectory()`
+
+```php
+/**
+ * Determine if the given path is a directory.
+ *
+ * @return bool Returns TRUE if the given path exists and is a directory, FALSE otherwise.
+ */
+public function isDirectory(): bool
+```
+
+##### Example
+
+```php  
+$result = $filesystem->directory('/foo')->isDirectory();
+```
+
+##### <a name="directory_move"></a> Method: `move()`
+
+```php
+/**
+ * Move a directory.
+ *
+ * @param  string $destination The destination path.
+ *
+ * @return bool Returns TRUE on success or FALSE on failure.
+ */
+public function move(string $destination): bool
+```
+
+##### Example
+
+```php  
+$filesystem->directory($this->tempDir . '/1')->move($this->tempDir . '/2');
+```
+
+##### <a name="directory_path"></a> Method: `path()`
+
+```php
+/**
+ * Return current path.
+ *
+ * @return string|null Current path
+ */
+public function path(): ?string
+```
+
+##### Example
+
+```php  
+$result = $filesystem->directory('/foo')->path();
+```
+
+##### <a name="directory_size"></a> Method: `size()`
+
+```php
+/**
+ * Gets size of a given directory in bytes.
+ *
+ * @return int Returns the size of the directory in bytes.
+ */
+public function size(): int
+```
+
+##### Example
+
+```php  
+$result = $filesystem->directory('/foo')->size();
+```
+
 ### Tests
 
 Run tests
@@ -310,5 +503,5 @@ Run tests
 ```
 
 ### License
-[The MIT License (MIT)](https://github.com/atomastic/filesytem/blob/master/LICENSE.txt)
+[The MIT License (MIT)](https://github.com/atomastic/filesystem/blob/master/LICENSE.txt)
 Copyright (c) 2020 [Sergey Romanenko](https://github.com/Awilum)
