@@ -503,5 +503,5 @@ Run tests
 ```
 
 ### License
-[The MIT License (MIT)](https://github.com/atomastic/filesystem/blob/master/LICENSE.txt)
+[The MIT License (MIT)](https://github.com/atomastic/filesystem/blob/master/LICENSE)
 Copyright (c) 2020 [Sergey Romanenko](https://github.com/Awilum)
