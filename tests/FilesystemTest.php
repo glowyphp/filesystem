@@ -58,12 +58,11 @@ test('test isDirectory() method', function (): void {
 });
 
 test('test isReadable() method', function (): void {
-    $filesytem = new Filesystem();
-
     if (PHP_OS_FAMILY === 'Windows') {
         $this->markTestSkipped('The operating system is Windows');
     }
 
+    $filesytem = new Filesystem();
     $filesytem->file($this->tempDir . '/1.txt')->put('test');
 
     @chmod($this->tempDir . '/1.txt', 0000);
@@ -76,6 +75,11 @@ test('test isReadable() method', function (): void {
 
 
 test('test isWritable() method', function (): void {
+
+    if (PHP_OS_FAMILY === 'Windows') {
+        $this->markTestSkipped('The operating system is Windows');
+    }
+
     $filesytem = new Filesystem();
     $filesytem->file($this->tempDir . '/1.txt')->put('test');
 
@@ -161,6 +165,10 @@ test('test append() method', function (): void {
 
 
 test('test chmod() method', function (): void {
+    if (PHP_OS_FAMILY === 'Windows') {
+        $this->markTestSkipped('The operating system is Windows');
+    }
+
     $filesytem = new Filesystem();
     $filesytem->file($this->tempDir . '/1.txt')->put('test');
 
@@ -179,6 +187,10 @@ test('test chmod() method', function (): void {
 });
 
 test('test directory chmod() method', function (): void {
+    if (PHP_OS_FAMILY === 'Windows') {
+        $this->markTestSkipped('The operating system is Windows');
+    }
+
     $filesytem = new Filesystem();
 
     // Set
