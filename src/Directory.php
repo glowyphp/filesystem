@@ -111,36 +111,40 @@ class Directory
      *
      * @return bool Returns TRUE on success or FALSE on failure.
      */
-    public function copy(string $destination, ?int $flags = null): bool
-    {
-        if (! (new Directory($this->path))->isDirectory()) {
-            return false;
-        }
+     public function copy(string $destination, ?int $flags = null): bool
+     {
+         $directory = $this->path;
 
-        if (! (new Directory($destination))->isDirectory()) {
-            (new Directory($destination))->create(0777);
-        }
+         if ((new Directory($directory))->isDirectory() === false) {
+             return false;
+         }
 
-        $flags = $flags ?: FilesystemIterator::SKIP_DOTS;
+         if ((new Directory($destination))->exists() === false) {
+             (new Directory($destination))->create(0777);
+         }
 
-        foreach (new FilesystemIterator($this->path, $flags) as $item) {
-            $target = $destination . '/' . $item->getBasename();
+         $flags = $flags ?: FilesystemIterator::SKIP_DOTS;
 
-            if ($item->isDir()) {
-                $path = $item->getPathname();
+         $items = new FilesystemIterator($directory, $flags);
 
-                if (! (new Directory($this->path))->copy($target, $flags)) {
-                    return false;
-                }
-            } else {
-                if (! (new File($item->getPathname()))->copy($target)) {
-                    return false;
-                }
-            }
-        }
+         foreach ($items as $item) {
+             $target = $destination.'/'.$item->getBasename();
 
-        return true;
-    }
+             if ($item->isDir()) {
+                 if ((new Directory($item->getPathname()))->copy($target, $flags) === false) {
+                     return false;
+                 }
+             }
+
+             else {
+                 if ((new File($item->getPathname()))->copy($target) === false) {
+                     return false;
+                 }
+             }
+         }
+
+         return true;
+     }
 
     /**
      * Checks the existence of directory and returns false if any of them is missing.
