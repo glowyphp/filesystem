@@ -224,6 +224,8 @@ test('test move() method', function (): void {
 test('test directory create() method', function (): void {
     $filesytem = new Filesystem();
     $this->assertTrue($filesytem->directory($this->tempDir . '/1')->create());
+    $this->assertTrue($filesytem->directory($this->tempDir . '/1/2/3/4/')->create(0755, true));
+    $this->assertTrue($filesytem->directory($this->tempDir . '/2/3/4/')->create(0755, true));
 });
 
 
