@@ -20,7 +20,8 @@
         "ext-spl": "*",
         "ext-fileinfo": "*",
         "php": "^7.3 || ^8.0",
-        "symfony/finder": "^5.1"
+        "symfony/finder": "^5.1",
+        "atomastic/macroable": "^1.0"
     },
     "autoload":{
         "psr-4": {

@@ -11,6 +11,7 @@ Filesystem Component provide a fluent, object-oriented interface for working wit
 
 * [Installation](#installation)
 * [Usage](#usage)
+* [Exteding](#extending)
 * [Methods](#methods)
   - [Filesystem](#filesystem)
   - [File](#file)
@@ -37,6 +38,30 @@ $filesystem = new Filesystem();
 // Using global helper function filesystem()
 $filesystem = filesystem();
 ```
+
+### Extending
+
+Filesystem are "macroable", which allows you to add additional methods to the Filesystem class at run time. For example, the following code adds a customMethod method to the Filesystem class:
+
+```php
+use Atomastic\Filesystem\Filesystem;
+use Atomastic\Macroable\Macroable;
+
+Filesystem::macro('countFiles', function($path) {
+    return count(iterator_to_array($this->find()->in($path)->files(), false));
+});
+
+$filesytem = new Filesystem();
+
+echo $filesytem->countFiles('/directory');
+```
+
+##### The above example will output:
+
+```
+1
+```
+
 
 ### Methods
 

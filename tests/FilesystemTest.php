@@ -382,3 +382,17 @@ test('test path() method', function (): void {
     $this->assertEquals($this->tempDir . '/1.txt', $filesytem->file($this->tempDir . '/1.txt')->path());
     $this->assertEquals($this->tempDir, $filesytem->directory($this->tempDir)->path());
 });
+
+test('test macro() method', function (): void {
+    @mkdir($this->tempDir . '/1');
+    $filesytem = new Filesystem();
+    $filesytem->file($this->tempDir . '/1/1.txt')->put('hello world');
+    $filesytem->file($this->tempDir . '/1/2.txt')->put('hello world');
+
+    Filesystem::macro('countFiles', function($path) {
+        return count(iterator_to_array($this->find()->in($path)->files(), false));
+    });
+
+    $filesytem = new Filesystem();
+    $this->assertEquals(2, $filesytem->countFiles($this->tempDir . '/1'));
+});

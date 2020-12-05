@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Atomastic\Filesystem;
 
 use Symfony\Component\Finder\Finder;
+use Atomastic\Macroable\Macroable;
 
 use function chmod;
 use function fileperms;
@@ -16,6 +17,8 @@ use function substr;
 
 class Filesystem
 {
+    use Macroable;
+    
     /**
      * Create a Finder instance.
      */
