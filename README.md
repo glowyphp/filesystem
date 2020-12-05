@@ -3,7 +3,7 @@
 Filesystem Component provide a fluent, object-oriented interface for working with filesystem.
 </p>
 <p align="center">
-<a href="https://github.com/atomastic/filesystem/releases"><img alt="Version" src="https://img.shields.io/github/release/atomastic/filesystem.svg?label=version&color=green"></a> <a href="https://github.com/atomastic/filesystem"><img src="https://img.shields.io/badge/license-MIT-blue.svg?color=green" alt="License"></a> <a href="https://github.com/atomastic/filesystem"><img src="https://img.shields.io/github/downloads/atomastic/filesystem/total.svg?color=green" alt="Total downloads"></a> <img src="https://github.com/atomastic/filesystem/workflows/Static%20Analysis/badge.svg?branch=dev"> <img src="https://github.com/atomastic/filesystem/workflows/Tests/badge.svg">
+<a href="https://github.com/atomastic/filesystem/releases"><img alt="Version" src="https://img.shields.io/github/release/atomastic/filesystem.svg?label=version&color=green"></a> <a href="https://github.com/atomastic/filesystem"><img src="https://img.shields.io/badge/license-MIT-blue.svg?color=green" alt="License"></a> <a href="https://packagist.org/packages/atomastic/filesystem"><img src="https://poser.pugx.org/atomastic/filesystem/downloads" alt="Total downloads"></a> <img src="https://github.com/atomastic/filesystem/workflows/Static%20Analysis/badge.svg?branch=dev"> <img src="https://github.com/atomastic/filesystem/workflows/Tests/badge.svg">
   <a href="https://app.codacy.com/gh/atomastic/filesystem?utm_source=github.com&utm_medium=referral&utm_content=atomastic/filesystem&utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/990baa96ada542f9ae21a41c2a25ddf9"></a> <a href="https://codeclimate.com/github/atomastic/filesystem/maintainability"><img src="https://api.codeclimate.com/v1/badges/ecbddff212c0e3a61216/maintainability" /></a> <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fatomastic%2Ffilesystem?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fatomastic%2Ffilesystem.svg?type=shield"/></a>
 </p>
 
@@ -11,6 +11,7 @@ Filesystem Component provide a fluent, object-oriented interface for working wit
 
 * [Installation](#installation)
 * [Usage](#usage)
+* [Exteding](#extending)
 * [Methods](#methods)
   - [Filesystem](#filesystem)
   - [File](#file)
@@ -37,6 +38,30 @@ $filesystem = new Filesystem();
 // Using global helper function filesystem()
 $filesystem = filesystem();
 ```
+
+### Extending
+
+Filesystem are "macroable", which allows you to add additional methods to the Filesystem class at run time. For example, the following code adds a customMethod method to the Filesystem class:
+
+```php
+use Atomastic\Filesystem\Filesystem;
+use Atomastic\Macroable\Macroable;
+
+Filesystem::macro('countFiles', function($path) {
+    return count(iterator_to_array($this->find()->in($path)->files(), false));
+});
+
+$filesytem = new Filesystem();
+
+echo $filesytem->countFiles('/directory');
+```
+
+##### The above example will output:
+
+```
+1
+```
+
 
 ### Methods
 
