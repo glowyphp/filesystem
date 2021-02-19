@@ -6,12 +6,14 @@ namespace Atomastic\Filesystem;
 
 use ErrorException as IOException;
 
+use function chmod;
 use function copy;
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
 use function fileatime;
 use function filemtime;
+use function fileperms;
 use function filesize;
 use function filetype;
 use function finfo_file;
@@ -22,6 +24,8 @@ use function is_writable;
 use function md5_file;
 use function pathinfo;
 use function rename;
+use function sprintf;
+use function substr;
 use function unlink;
 
 use const FILE_APPEND;
@@ -37,10 +41,8 @@ class File
      * Path property
      *
      * Current file absolute path
-     *
-     * @var string|null
      */
-    public $path;
+    public ?string $path = null;
 
     /**
      * Constructor
