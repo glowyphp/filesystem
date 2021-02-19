@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace Atomastic\Filesystem;
 
-use Symfony\Component\Finder\Finder;
 use Atomastic\Macroable\Macroable;
+use Symfony\Component\Finder\Finder;
 
-use function chmod;
-use function fileperms;
 use function glob;
 use function preg_match;
-use function sprintf;
 use function strpos;
 use function substr;
 
 class Filesystem
 {
     use Macroable;
-    
+
     /**
      * Create a Finder instance.
      */

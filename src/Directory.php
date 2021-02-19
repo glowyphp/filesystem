@@ -8,11 +8,15 @@ use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 
+use function chmod;
 use function file_exists;
+use function fileperms;
 use function is_dir;
 use function mkdir;
 use function rename;
 use function rmdir;
+use function sprintf;
+use function substr;
 
 class Directory
 {
@@ -20,10 +24,8 @@ class Directory
      * Path property
      *
      * Current directory path.
-     *
-     * @var string|null
      */
-    public $path;
+    public ?string $path = null;
 
     /**
      * Constructor
@@ -111,40 +113,38 @@ class Directory
      *
      * @return bool Returns TRUE on success or FALSE on failure.
      */
-     public function copy(string $destination, ?int $flags = null): bool
-     {
-         $directory = $this->path;
+    public function copy(string $destination, ?int $flags = null): bool
+    {
+        $directory = $this->path;
 
-         if ((new Directory($directory))->isDirectory() === false) {
-             return false;
-         }
+        if ((new Directory($directory))->isDirectory() === false) {
+            return false;
+        }
 
-         if ((new Directory($destination))->exists() === false) {
-             (new Directory($destination))->create(0777);
-         }
+        if ((new Directory($destination))->exists() === false) {
+            (new Directory($destination))->create(0777);
+        }
 
-         $flags = $flags ?: FilesystemIterator::SKIP_DOTS;
+        $flags = $flags ?: FilesystemIterator::SKIP_DOTS;
 
-         $items = new FilesystemIterator($directory, $flags);
+        $items = new FilesystemIterator($directory, $flags);
 
-         foreach ($items as $item) {
-             $target = $destination.'/'.$item->getBasename();
+        foreach ($items as $item) {
+            $target = $destination . '/' . $item->getBasename();
 
-             if ($item->isDir()) {
-                 if ((new Directory($item->getPathname()))->copy($target, $flags) === false) {
-                     return false;
-                 }
-             }
+            if ($item->isDir()) {
+                if ((new Directory($item->getPathname()))->copy($target, $flags) === false) {
+                    return false;
+                }
+            } else {
+                if ((new File($item->getPathname()))->copy($target) === false) {
+                    return false;
+                }
+            }
+        }
 
-             else {
-                 if ((new File($item->getPathname()))->copy($target) === false) {
-                     return false;
-                 }
-             }
-         }
-
-         return true;
-     }
+        return true;
+    }
 
     /**
      * Checks the existence of directory and returns false if any of them is missing.

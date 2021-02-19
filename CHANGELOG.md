@@ -1,3 +1,9 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/atomastic/filesystem) (2021-02-19)
+* Move to PHP 7.4
+* Fix tests
+* Code refactoring
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/atomastic/filesystem) (2020-12-05)
 * add ability to extend Filesystem class with Macros.
