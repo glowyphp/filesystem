@@ -96,7 +96,6 @@ test('test isStream() method', function (): void {
     $this->assertTrue($filesystem->isStream('file://1.txt'));
 });
 
-
 test('test isAbsolute method', function (): void {
     $filesystem = new Filesystem();
 
@@ -228,6 +227,12 @@ test('test directory create() method', function (): void {
     $this->assertTrue($filesystem->directory($this->tempDir . '/2/3/4/')->create(0755, true));
 });
 
+test('test directory ensureExists() method', function (): void {
+    $filesystem = new Filesystem();
+    $this->assertTrue($filesystem->directory($this->tempDir . '/1')->ensureExists());
+    $this->assertTrue($filesystem->directory($this->tempDir . '/1/2/3/4/')->ensureExists(0755, true));
+    $this->assertTrue($filesystem->directory($this->tempDir . '/2/3/4/')->ensureExists(0755, true));
+});
 
 test('test directory move() method', function (): void {
     @mkdir($this->tempDir . '/1');

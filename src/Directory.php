@@ -81,7 +81,7 @@ class Directory
     /**
      * Create a directory.
      *
-     * @param  int  $mode      The mode is 0777 by default, which means the widest possible access.
+     * @param  int  $mode      The mode is 0755 by default, which means the widest possible access.
      * @param  bool $recursive Allows the creation of nested directories specified in the path.
      *
      * @return bool Returns TRUE on success or FALSE on failure.
@@ -141,6 +141,23 @@ class Directory
                     return false;
                 }
             }
+        }
+
+        return true;
+    }
+
+    /**
+     * Ensure a directory exists.
+     *
+     * @param  int  $mode      The mode is 0755 by default, which means the widest possible access.
+     * @param  bool $recursive Allows the creation of nested directories specified in the path.
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
+     */
+    public function ensureExists($mode = 0755, $recursive = false)
+    {
+        if ($this->exists() === false) {
+            return $this->create($mode, $recursive);
         }
 
         return true;
