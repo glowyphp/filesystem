@@ -1,3 +1,7 @@
+<a name="2.1.0"></a>
+# [2.0.0](https://github.com/atomastic/filesystem) (2021-08-06)
+* add `ensureExists` method for Directory.
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/atomastic/filesystem) (2021-02-19)
 * Move to PHP 7.4
