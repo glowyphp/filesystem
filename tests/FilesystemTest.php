@@ -36,6 +36,13 @@ test('test deleteDirectory() method', function (): void {
     $this->assertTrue($filesystem->directory($this->tempDir . '/1')->delete());
 });
 
+test('test replace() method', function (): void {
+    file_put_contents($this->tempDir . '/replace.txt', 'foo');
+    $filesystem = new Filesystem();
+    $filesystem->file($this->tempDir . '/replace.txt')->replace('foo', 'boo');
+    $this->assertEquals('boo', file_get_contents($this->tempDir . '/replace.txt'));
+});
+
 test('test put() method', function (): void {
     $filesystem = new Filesystem();
     $this->assertEquals(4, $filesystem->file($this->tempDir . '/2.txt')->put('test'));
@@ -141,11 +148,17 @@ test('test hash() method', function (): void {
     $this->assertEquals('098f6bcd4621d373cade4e832627b4f6', $filesystem->file($this->tempDir . '/1.txt')->hash());
 });
 
-
 test('test get() method', function (): void {
     $filesystem = new Filesystem();
     $filesystem->file($this->tempDir . '/1.txt')->put('test');
     $this->assertEquals('test', $filesystem->file($this->tempDir . '/1.txt')->get());
+    $this->assertEquals('test', $filesystem->file($this->tempDir . '/1.txt')->get(true));
+});
+
+test('test sharedGet() method', function (): void {
+    $filesystem = new Filesystem();
+    $filesystem->file($this->tempDir . '/shared.txt')->put('test');
+    $this->assertEquals('test', $filesystem->file($this->tempDir . '/shared.txt')->sharedGet());
 });
 
 test('test prepend() method', function (): void {

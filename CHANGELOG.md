@@ -1,5 +1,11 @@
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/atomastic/filesystem) (2021-09-28)
+* add `replace` method for File.
+* add `sharedGet` method for File.
+* add ability to `get` method for File.
+
 <a name="2.1.0"></a>
-# [2.0.0](https://github.com/atomastic/filesystem) (2021-08-06)
+# [2.1.0](https://github.com/atomastic/filesystem) (2021-08-06)
 * add `ensureExists` method for Directory.
 
 <a name="2.0.0"></a>

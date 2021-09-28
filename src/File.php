@@ -69,12 +69,48 @@ class File
 
     /**
      * Get the contents of a file.
+     * 
+     * @param  bool $lock Acquire an exclusive lock on the file while proceeding to the reading.
      *
      * @return string|false The file contents or false on failure.
      */
-    public function get()
+    public function get($lock = false)
     {
-        $contents = file_get_contents($this->path);
+        if ($this->isFile($this->path)) {
+            $contents = $lock ? $this->sharedGet() : file_get_contents($this->path);
+        }
+
+        if ($contents === false) {
+            return false;
+        }
+
+        return $contents;
+    }
+
+    /**
+     * Get contents of a file with shared access.
+     * 
+     * @return string|false The file contents or false on failure.
+     */
+    public function sharedGet()
+    {
+        $contents = false;
+
+        $handle = fopen($this->path, 'rb');
+
+        if ($handle) {
+            try {
+                if (flock($handle, LOCK_SH)) {
+                    clearstatcache(true, $this->path);
+
+                    $contents = fread($handle, $this->size($this->path) ?: 1);
+
+                    flock($handle, LOCK_UN);
+                }
+            } finally {
+                fclose($handle);
+            }
+        }
 
         if ($contents === false) {
             return false;
@@ -109,6 +145,19 @@ class File
     public function append(string $data)
     {
         return file_put_contents($this->path, $data, FILE_APPEND);
+    }
+
+    /**
+     * Replace the value with the string in a given file.
+     * 
+     * @param  string $search  Search
+     * @param  mixed  $replace Replace
+     * 
+     * @return void
+     */
+    public function replace(string $search, $replace): void 
+    {
+        file_put_contents($this->path, str_replace($search, $replace, file_get_contents($this->path)));
     }
 
     /**
