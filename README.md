@@ -1,6 +1,6 @@
-<h1 align="center">Filesystem Component</h1>
+<h1 align="center">Filesystem</h1>
 <p align="center">
-Filesystem Component provide a fluent, object-oriented interface for working with filesystem.
+Filesystem Package provide a fluent, object-oriented interface for working with filesystem.
 </p>
 <p align="center">
 <a href="https://github.com/glowyphp/filesystem/releases"><img alt="Version" src="https://img.shields.io/github/release/glowyphp/filesystem.svg?label=version&color=green"></a> <a href="https://github.com/glowyphp/filesystem"><img src="https://img.shields.io/badge/license-MIT-blue.svg?color=green" alt="License"></a> <a href="https://packagist.org/packages/glowy/filesystem"><img src="https://poser.pugx.org/glowy/filesystem/downloads" alt="Total downloads"></a> <img src="https://github.com/glowyphp/filesystem/workflows/Static%20Analysis/badge.svg?branch=dev"> <img src="https://github.com/glowyphp/filesystem/workflows/Tests/badge.svg">
