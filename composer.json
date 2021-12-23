@@ -21,7 +21,7 @@
         "ext-fileinfo": "*",
         "php": "^7.4 || ^8.0",
         "symfony/finder": "^5.2.3",
-        "glowy/macroable": "^2.0"
+        "glowy/macroable": "^3.0"
     },
     "autoload":{
         "psr-4": {
