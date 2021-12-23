@@ -1,26 +1,26 @@
 <a name="2.2.0"></a>
-# [2.2.0](https://github.com/atomastic/filesystem) (2021-09-28)
+# [2.2.0](https://github.com/glowyphp/filesystem) (2021-09-28)
 * add `replace` method for File.
 * add `sharedGet` method for File.
 * add ability to `get` method for File.
 
 <a name="2.1.0"></a>
-# [2.1.0](https://github.com/atomastic/filesystem) (2021-08-06)
+# [2.1.0](https://github.com/glowyphp/filesystem) (2021-08-06)
 * add `ensureExists` method for Directory.
 
 <a name="2.0.0"></a>
-# [2.0.0](https://github.com/atomastic/filesystem) (2021-02-19)
+# [2.0.0](https://github.com/glowyphp/filesystem) (2021-02-19)
 * Move to PHP 7.4
 * Fix tests
 * Code refactoring
 
 <a name="1.1.0"></a>
-# [1.1.0](https://github.com/atomastic/filesystem) (2020-12-05)
+# [1.1.0](https://github.com/glowyphp/filesystem) (2020-12-05)
 * add ability to extend Filesystem class with Macros.
 
     ```php
-    use Atomastic\Filesystem\Filesystem;
-    use Atomastic\Macroable\Macroable;
+    use Glowy\Filesystem\Filesystem;
+    use Glowy\Macroable\Macroable;
 
     Filesystem::macro('countFiles', function($path) {
         return count(iterator_to_array($this->find()->in($path)->files(), false));
@@ -33,9 +33,9 @@
 * improve tests for directory `create()` method.
 
 <a name="1.0.1"></a>
-# [1.0.1](https://github.com/atomastic/filesystem) (2020-10-17)
+# [1.0.1](https://github.com/glowyphp/filesystem) (2020-10-17)
 * fix Directory copy() method.
 
 <a name="1.0.0"></a>
-# [1.0.0](https://github.com/atomastic/filesystem) (2020-10-15)
+# [1.0.0](https://github.com/glowyphp/filesystem) (2020-10-15)
 * Initial release

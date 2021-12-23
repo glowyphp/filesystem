@@ -3,8 +3,8 @@
 Filesystem Component provide a fluent, object-oriented interface for working with filesystem.
 </p>
 <p align="center">
-<a href="https://github.com/atomastic/filesystem/releases"><img alt="Version" src="https://img.shields.io/github/release/atomastic/filesystem.svg?label=version&color=green"></a> <a href="https://github.com/atomastic/filesystem"><img src="https://img.shields.io/badge/license-MIT-blue.svg?color=green" alt="License"></a> <a href="https://packagist.org/packages/atomastic/filesystem"><img src="https://poser.pugx.org/atomastic/filesystem/downloads" alt="Total downloads"></a> <img src="https://github.com/atomastic/filesystem/workflows/Static%20Analysis/badge.svg?branch=dev"> <img src="https://github.com/atomastic/filesystem/workflows/Tests/badge.svg">
-  <a href="https://app.codacy.com/gh/atomastic/filesystem?utm_source=github.com&utm_medium=referral&utm_content=atomastic/filesystem&utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/990baa96ada542f9ae21a41c2a25ddf9"></a> <a href="https://codeclimate.com/github/atomastic/filesystem/maintainability"><img src="https://api.codeclimate.com/v1/badges/ecbddff212c0e3a61216/maintainability" /></a> <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fatomastic%2Ffilesystem?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fatomastic%2Ffilesystem.svg?type=shield"/></a>
+<a href="https://github.com/glowyphp/filesystem/releases"><img alt="Version" src="https://img.shields.io/github/release/glowyphp/filesystem.svg?label=version&color=green"></a> <a href="https://github.com/glowyphp/filesystem"><img src="https://img.shields.io/badge/license-MIT-blue.svg?color=green" alt="License"></a> <a href="https://packagist.org/packages/glowy/filesystem"><img src="https://poser.pugx.org/glowy/filesystem/downloads" alt="Total downloads"></a> <img src="https://github.com/glowyphp/filesystem/workflows/Static%20Analysis/badge.svg?branch=dev"> <img src="https://github.com/glowyphp/filesystem/workflows/Tests/badge.svg">
+  <a href="https://app.codacy.com/gh/glowy/filesystem?utm_source=github.com&utm_medium=referral&utm_content=glowy/filesystem&utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/72b4dc84c20145e1b77dc0004a3c8e3d"></a> <a href="https://codeclimate.com/github/glowy/filesystem/maintainability"><img src="https://api.codeclimate.com/v1/badges/a4c673a4640a3863a9a4/maintainability" /></a> <img src="http://poser.pugx.org/glowy/filesystem/require/php">
 </p>
 
 <br>
@@ -14,11 +14,11 @@ Filesystem Component provide a fluent, object-oriented interface for working wit
 #### With [Composer](https://getcomposer.org)
 
 ```
-composer require atomastic/filesystem
+composer require glowy/filesystem
 ```
 
 ### Resources
-* [Documentation](https://atomastic.com/components/filesystem)
+* [Documentation](https://digital.flextype.org/glowyphp/components/filesystem)
 
 ### Tests
 
@@ -29,5 +29,5 @@ Run tests
 ```
 
 ### License
-[The MIT License (MIT)](https://github.com/atomastic/filesystem/blob/master/LICENSE)
+[The MIT License (MIT)](https://github.com/glowyphp/filesystem/blob/master/LICENSE)
 Copyright (c) 2021 [Sergey Romanenko](https://github.com/Awilum)

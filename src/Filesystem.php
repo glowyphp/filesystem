@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Atomastic\Filesystem;
+namespace Glowy\Filesystem;
 
-use Atomastic\Macroable\Macroable;
+use Glowy\Macroable\Macroable;
 use Symfony\Component\Finder\Finder;
 
 use function glob;
