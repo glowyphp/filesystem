@@ -1,3 +1,9 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/glowyphp/filesystem) (2021-12-23)
+* Released under Glowy PHP Organization
+* Add PHP 8.1 support
+* Updated dependencies.
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/glowyphp/filesystem) (2021-09-28)
 * add `replace` method for File.
