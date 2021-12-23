@@ -18,7 +18,7 @@ composer require glowy/filesystem
 ```
 
 ### Resources
-* [Documentation](https://digital.flextype.org/glowyphp/components/filesystem)
+* [Documentation](https://digital.flextype.org/glowyphp/packages/filesystem)
 
 ### Tests
 
