@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Atomastic\Filesystem\Filesystem;
+use Glowy\Filesystem\Filesystem;
 
 if (! function_exists('filesystem')) {
     /**

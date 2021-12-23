@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Atomastic\Filesystem;
+namespace Glowy\Filesystem;
 
 use FilesystemIterator;
 use RecursiveDirectoryIterator;

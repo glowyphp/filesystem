@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Atomastic\Filesystem\Filesystem;
-use Atomastic\Filesystem\File;
-use Atomastic\Filesystem\Directory;
+use Glowy\Filesystem\Filesystem;
+use Glowy\Filesystem\File;
+use Glowy\Filesystem\Directory;
 
 beforeEach(function (): void {
     $this->tempDir = __DIR__ . '/tmp';
