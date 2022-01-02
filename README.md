@@ -30,4 +30,4 @@ Run tests
 
 ### License
 [The MIT License (MIT)](https://github.com/glowyphp/filesystem/blob/master/LICENSE)
-Copyright (c) 2021 [Sergey Romanenko](https://github.com/Awilum)
+Copyright (c) 2022 [Sergey Romanenko](https://github.com/Awilum)
