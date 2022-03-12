@@ -18,7 +18,7 @@ composer require glowy/filesystem
 ```
 
 ### Resources
-* [Documentation](https://awilum.github.io/glowyphp/filesystem/)
+* [Documentation](https://awilum.github.io/glowyphp/filesystem)
 
 ### Tests
 
