@@ -170,7 +170,9 @@ class File
         $result = true;
 
         try {
-            if (! @unlink($this->path)) {
+            if (@unlink($this->path)) {
+                clearstatcache(false, $this->path);
+            } else {
                 $result = false;
             }
         } catch (IOException $e) {
