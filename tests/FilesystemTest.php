@@ -175,6 +175,19 @@ test('test append() method', function (): void {
     $this->assertEquals('hello world', $filesystem->file($this->tempDir . '/1.txt')->get());
 });
 
+test('test isEqual() method', function (): void {
+    $filesystem = new Filesystem();
+    $filesystem->file($this->tempDir . '/foo.txt')->put('Foo');
+    $filesystem->file($this->tempDir . '/foo2.txt')->put('Foo');
+    $filesystem->file($this->tempDir . '/bar.txt')->put('Bar');
+    $filesystem->file($this->tempDir . '/bar2.txt')->put('Bar2');
+    
+    $result  = $filesystem->file($this->tempDir . '/foo.txt')->isEqual($this->tempDir . '/foo2.txt');
+    $result2 = $filesystem->file($this->tempDir . '/bar.txt')->isEqual($this->tempDir . '/bar2.txt');
+
+    $this->assertEquals(true, $result);
+    $this->assertEquals(false, $result2);
+});
 
 test('test chmod() method', function (): void {
     if (PHP_OS_FAMILY === 'Windows') {

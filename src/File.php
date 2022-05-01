@@ -120,6 +120,22 @@ class File
     }
 
     /**
+     * Determine if two files are the same.
+     *
+     * @param  string  $file File to compare.
+     * 
+     * @return bool
+     */
+    public function isEqual(string $file): bool
+    {
+        if (!file_exists($this->path) || !file_exists($file)) {
+            return false;
+        }
+
+        return md5_file($this->path) === md5_file($file);
+    }
+
+    /**
      * Prepend to a file.
      *
      * @param  string $data The data to write.
