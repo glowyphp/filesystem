@@ -287,11 +287,11 @@ test('directory directories method', function (): void {
 
     $filesystem = new Filesystem();
     $dirs = array_map(function (string $dir): string {
-        return str_replace($this->tempDir, '', $dir);
+        return str_replace($this->tempDir . '/', '', $dir);
     }, $filesystem->directory($this->tempDir)->directories());
-    $this->assertTrue($dirs[0] == '/bar');
-    $this->assertTrue($dirs[1] == '/foo');
-    $this->assertTrue($dirs[2] == '/zed');
+    $this->assertTrue($dirs[0] == 'bar');
+    $this->assertTrue($dirs[1] == 'foo');
+    $this->assertTrue($dirs[2] == 'zed');
 });
 
 test('directory clean method', function (): void {
