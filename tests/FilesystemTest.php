@@ -280,15 +280,6 @@ test('directory copy method', function (): void {
     $this->assertTrue($filesystem->directory($this->tempDir . '/3')->copy($this->tempDir . '/4'));
 });
 
-test('directory delete method', function (): void {
-    @mkdir($this->tempDir . '/1');
-    @mkdir($this->tempDir . '/1/2');
-    @mkdir($this->tempDir . '/1/2/3');
-
-    $filesystem = new Filesystem();
-    $this->assertTrue($filesystem->directory($this->tempDir . '/1')->delete());
-});
-
 test('directory directories method', function (): void {
     @mkdir($this->tempDir . '/foo');
     @mkdir($this->tempDir . '/bar');
