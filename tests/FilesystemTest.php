@@ -281,6 +281,10 @@ test('directory copy method', function (): void {
 });
 
 test('directory directories method', function (): void {
+    if (PHP_OS_FAMILY === 'Windows') {
+        $this->markTestSkipped('The operating system is Windows');
+    }
+    
     @mkdir($this->tempDir . '/foo');
     @mkdir($this->tempDir . '/bar');
     @mkdir($this->tempDir . '/zed');
