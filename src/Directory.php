@@ -238,4 +238,20 @@ class Directory
 
         return substr(sprintf('%o', fileperms($this->path)), -4);
     }
+
+    /**
+     * Get all of the directories within a given directory.
+     *  
+     * @return array Directories
+     */
+    public function directories(): array
+    {
+        $directories = [];
+
+        foreach ((new Filesystem())->find()->in($this->path)->directories()->depth(0)->sortByName() as $dir) {
+            $directories[] = $dir->getPathname();
+        }
+
+        return $directories;
+    }
 }

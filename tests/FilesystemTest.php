@@ -280,7 +280,6 @@ test('test directory copy() method', function (): void {
     $this->assertTrue($filesystem->directory($this->tempDir . '/3')->copy($this->tempDir . '/4'));
 });
 
-
 test('test directory delete() method', function (): void {
     @mkdir($this->tempDir . '/1');
     @mkdir($this->tempDir . '/1/2');
@@ -290,6 +289,19 @@ test('test directory delete() method', function (): void {
     $this->assertTrue($filesystem->directory($this->tempDir . '/1')->delete());
 });
 
+test('test directory directories() method', function (): void {
+    @mkdir($this->tempDir . '/foo');
+    @mkdir($this->tempDir . '/bar');
+    @mkdir($this->tempDir . '/zed');
+
+    $filesystem = new Filesystem();
+    $dirs = array_map(function (string $dir): string {
+        return str_replace($this->tempDir, '', $dir);
+    }, $filesystem->directory($this->tempDir)->directories());
+    $this->assertTrue($dirs[0] == '/bar');
+    $this->assertTrue($dirs[1] == '/foo');
+    $this->assertTrue($dirs[2] == '/zed');
+});
 
 test('test directory clean() method', function (): void {
     @mkdir($this->tempDir . '/1');
