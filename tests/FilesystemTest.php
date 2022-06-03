@@ -312,7 +312,6 @@ test('directory directories method', function (): void {
     $this->assertTrue($dirs2[5] == 'zed/zed-2');
 });
 
-
 test('directory files method', function (): void {
     if (PHP_OS_FAMILY === 'Windows') {
         $this->markTestSkipped('The operating system is Windows');
@@ -353,7 +352,6 @@ test('directory clean method', function (): void {
     $this->assertTrue($filesystem->directory($this->tempDir . '/1')->clean());
     $this->assertFalse($filesystem->file($this->tempDir . '/1/1.txt')->exists());
 });
-
 
 test('filesystem glob method', function (): void {
     $filesystem = new Filesystem();
