@@ -284,10 +284,13 @@ test('directory directories method', function (): void {
     if (PHP_OS_FAMILY === 'Windows') {
         $this->markTestSkipped('The operating system is Windows');
     }
-    
+
     @mkdir($this->tempDir . '/foo');
+    @mkdir($this->tempDir . '/foo/foo-2');
     @mkdir($this->tempDir . '/bar');
+    @mkdir($this->tempDir . '/bar/bar-2');
     @mkdir($this->tempDir . '/zed');
+    @mkdir($this->tempDir . '/zed/zed-2');
 
     $filesystem = new Filesystem();
     $dirs = array_map(function (string $dir): string {
@@ -296,6 +299,17 @@ test('directory directories method', function (): void {
     $this->assertTrue($dirs[0] == 'bar');
     $this->assertTrue($dirs[1] == 'foo');
     $this->assertTrue($dirs[2] == 'zed');
+
+    $filesystem2 = new Filesystem();
+    $dirs2 = array_map(function (string $dir): string {
+        return str_replace($this->tempDir . '/', '', $dir);
+    }, $filesystem2->directory($this->tempDir)->directories(true));
+    $this->assertTrue($dirs2[0] == 'bar');
+    $this->assertTrue($dirs2[1] == 'bar/bar-2');
+    $this->assertTrue($dirs2[2] == 'foo');
+    $this->assertTrue($dirs2[3] == 'foo/foo-2');
+    $this->assertTrue($dirs2[4] == 'zed');
+    $this->assertTrue($dirs2[5] == 'zed/zed-2');
 });
 
 test('directory clean method', function (): void {

@@ -242,13 +242,15 @@ class Directory
     /**
      * Get all of the directories within a given directory.
      *  
+     * @param bool $recursive Allows search of nested directories specified in the path.
+     *
      * @return array Directories
      */
-    public function directories(): array
+    public function directories(bool $recursive = false): array
     {
         $directories = [];
 
-        foreach ((new Filesystem())->find()->in($this->path)->directories()->depth(0)->sortByName() as $dir) {
+        foreach ((new Filesystem())->find()->in($this->path)->directories()->depth($recursive ? '>=0' : '0')->sortByName() as $dir) {
             $directories[] = $dir->getPathname();
         }
 
