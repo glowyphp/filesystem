@@ -312,6 +312,38 @@ test('directory directories method', function (): void {
     $this->assertTrue($dirs2[5] == 'zed/zed-2');
 });
 
+
+test('directory files method', function (): void {
+    if (PHP_OS_FAMILY === 'Windows') {
+        $this->markTestSkipped('The operating system is Windows');
+    }
+    
+    $filesystem = new Filesystem();
+
+    $filesystem->file($this->tempDir . '/1.txt')->put('test');
+    @mkdir($this->tempDir . '/foo');
+    $filesystem->file($this->tempDir . '/foo/1.txt')->put('test');
+    @mkdir($this->tempDir . '/foo/foo-2');
+    $filesystem->file($this->tempDir . '/foo/foo-2/1.txt')->put('test');
+    @mkdir($this->tempDir . '/bar');
+    $filesystem->file($this->tempDir . '/bar/1.txt')->put('test');
+    @mkdir($this->tempDir . '/bar/bar-2');
+    $filesystem->file($this->tempDir . '/bar/bar-2/1.txt')->put('test');
+    @mkdir($this->tempDir . '/zed');
+    $filesystem->file($this->tempDir . '/zed/1.txt')->put('test');
+    @mkdir($this->tempDir . '/zed/zed-2');
+    $filesystem->file($this->tempDir . '/zed/zed-2/1.txt')->put('test');
+
+    $filesystem = new Filesystem();
+    $this->assertTrue(count($filesystem->directory($this->tempDir)->files(true)) == 7);
+    
+    $filesystem = new Filesystem();
+    $this->assertTrue(count($filesystem->directory($this->tempDir)->files()) == 1);
+
+    $filesystem = new Filesystem();
+    $this->assertTrue(count($filesystem->directory($this->tempDir)->files(false)) == 1);
+});
+
 test('directory clean method', function (): void {
     @mkdir($this->tempDir . '/1');
     $filesystem = new Filesystem();

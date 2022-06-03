@@ -240,6 +240,19 @@ class Directory
     }
 
     /**
+     * Get all of the files within a given directory.
+     *  
+     * @param bool $recursive Allows search files in nested directories specified in the path.
+     * @param bool $hidden    Allows search hidden files.
+     *
+     * @return array Directories
+     */
+    public function files(bool $recursive = false, bool $hidden = false): array
+    {
+        return iterator_to_array((new Filesystem())->find()->in($this->path)->files()->ignoreDotFiles(! $hidden)->depth($recursive ? '>=0' : '0')->sortByName(), false);
+    }
+
+    /**
      * Get all of the directories within a given directory.
      *  
      * @param bool $recursive Allows search of nested directories specified in the path.
