@@ -338,6 +338,16 @@ class File
     }
 
     /**
+     * Determine if the file is empty.
+     *
+     * @return bool Returns TRUE if the given path exists and is readable, FALSE otherwise.
+     */
+    public function isEmpty(): bool
+    {
+        return $this->size() === 0;
+    }
+
+    /**
      * Determine if the given path is readable.
      *
      * @return bool Returns TRUE if the given path exists and is readable, FALSE otherwise.

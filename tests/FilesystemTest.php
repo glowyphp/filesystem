@@ -429,6 +429,16 @@ test('file extension method', function (): void {
     $this->assertEquals('txt', $filesystem->file($this->tempDir . '/1.txt')->extension());
 });
 
+test('file isEmpty method', function (): void {
+    $filesystem = new Filesystem();
+
+    $filesystem->file($this->tempDir . '/1.txt')->put('hello world');
+    expect($filesystem->file($this->tempDir . '/1.txt')->isEmpty())->toBe(false);
+    
+    $filesystem->file($this->tempDir . '/2.txt')->put('');
+    expect($filesystem->file($this->tempDir . '/2.txt')->isEmpty())->toBe(true);
+});
+
 test('file basename method', function (): void {
     $filesystem = new Filesystem();
 
