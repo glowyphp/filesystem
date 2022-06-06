@@ -238,4 +238,47 @@ class Directory
 
         return substr(sprintf('%o', fileperms($this->path)), -4);
     }
+
+    /**
+     * Get all of the files within a given directory.
+     *  
+     * @param bool $recursive Allows search files in nested directories specified in the path.
+     * @param bool $hidden    Allows search hidden files.
+     *
+     * @return array Directories
+     */
+    public function files(bool $recursive = false, bool $hidden = false): array
+    {
+        return iterator_to_array((new Filesystem())->find()->in($this->path)->files()->ignoreDotFiles(! $hidden)->depth($recursive ? '>=0' : '0')->sortByName(), false);
+    }
+
+    /**
+     * Get all of the directories within a given directory.
+     *  
+     * @param bool $recursive Allows search of nested directories specified in the path.
+     *
+     * @return array Directories
+     */
+    public function directories(bool $recursive = false): array
+    {
+        $directories = [];
+
+        foreach ((new Filesystem())->find()->in($this->path)->directories()->depth($recursive ? '>=0' : '0')->sortByName() as $dir) {
+            $directories[] = $dir->getPathname();
+        }
+
+        return $directories;
+    }
+
+    /**
+     * Determine if the directory is empty.
+     *
+     * @param  bool $ignoreDotFiles Allows search hidden files.
+     * 
+     * @return bool Returns TRUE if the given path is empty, FALSE otherwise.
+     */
+    public function isEmpty(bool $ignoreDotFiles = false): bool
+    {
+        return ! (new Filesystem())->find()->ignoreDotFiles($ignoreDotFiles)->in($this->path)->depth(0)->hasResults();
+    }
 }

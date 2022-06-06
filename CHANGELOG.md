@@ -1,3 +1,13 @@
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/glowyphp/filesystem) (2022-06-06)
+* Added new method `isEmpty` for files.
+* Added new method `isEmpty` for directories.
+
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/glowyphp/filesystem) (2022-06-03)
+* Added new method `directories`.
+* Added new method `files`.
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/glowyphp/filesystem) (2021-12-23)
 * Released under Glowy PHP Organization

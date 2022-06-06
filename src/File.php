@@ -120,6 +120,22 @@ class File
     }
 
     /**
+     * Determine if two files are the same.
+     *
+     * @param  string  $file File to compare.
+     * 
+     * @return bool
+     */
+    public function isEqual(string $file): bool
+    {
+        if (!file_exists($this->path) || !file_exists($file)) {
+            return false;
+        }
+
+        return md5_file($this->path) === md5_file($file);
+    }
+
+    /**
      * Prepend to a file.
      *
      * @param  string $data The data to write.
@@ -170,7 +186,9 @@ class File
         $result = true;
 
         try {
-            if (! @unlink($this->path)) {
+            if (@unlink($this->path)) {
+                clearstatcache(false, $this->path);
+            } else {
                 $result = false;
             }
         } catch (IOException $e) {
@@ -306,6 +324,7 @@ class File
      */
     public function size(): int
     {
+        clearstatcache(true, $this->path);
         return filesize($this->path);
     }
 
@@ -317,6 +336,16 @@ class File
     public function hash(): string
     {
         return md5_file($this->path);
+    }
+
+    /**
+     * Determine if the file is empty.
+     *
+     * @return bool Returns TRUE if the given path is empty, FALSE otherwise.
+     */
+    public function isEmpty(): bool
+    {
+        return $this->size() === 0;
     }
 
     /**
