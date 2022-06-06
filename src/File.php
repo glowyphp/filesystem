@@ -340,7 +340,7 @@ class File
     /**
      * Determine if the file is empty.
      *
-     * @return bool Returns TRUE if the given path exists and is readable, FALSE otherwise.
+     * @return bool Returns TRUE if the given path is empty, FALSE otherwise.
      */
     public function isEmpty(): bool
     {

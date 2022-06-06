@@ -269,4 +269,16 @@ class Directory
 
         return $directories;
     }
+
+    /**
+     * Determine if the directory is empty.
+     *
+     * @param  bool $ignoreDotFiles Allows search hidden files.
+     * 
+     * @return bool Returns TRUE if the given path is empty, FALSE otherwise.
+     */
+    public function isEmpty(bool $ignoreDotFiles = false): bool
+    {
+        return ! (new Filesystem())->find()->ignoreDotFiles($ignoreDotFiles)->in($this->path)->depth(0)->hasResults();
+    }
 }

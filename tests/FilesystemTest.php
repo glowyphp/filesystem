@@ -439,6 +439,15 @@ test('file isEmpty method', function (): void {
     expect($filesystem->file($this->tempDir . '/2.txt')->isEmpty())->toBe(true);
 });
 
+test('directory isEmpty method', function (): void {
+    $filesystem = new Filesystem();
+
+    $filesystem->file($this->tempDir . '/1.txt')->put('hello world');    
+    $filesystem->file($this->tempDir . '/2.txt')->put('');
+
+    expect($filesystem->directory($this->tempDir)->isEmpty())->toBe(false);
+});
+
 test('file basename method', function (): void {
     $filesystem = new Filesystem();
 
