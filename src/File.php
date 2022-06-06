@@ -324,6 +324,7 @@ class File
      */
     public function size(): int
     {
+        clearstatcache(true, $this->path);
         return filesize($this->path);
     }
 
