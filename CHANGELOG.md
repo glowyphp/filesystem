@@ -1,3 +1,7 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/glowyphp/filesystem) (2021-07-02)
+* Moving to PHP 8.1
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/glowyphp/filesystem) (2022-06-06)
 * Added new method `isEmpty` for files.
