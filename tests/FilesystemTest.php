@@ -6,6 +6,8 @@ use Glowy\Filesystem\Filesystem;
 use Glowy\Filesystem\File;
 use Glowy\Filesystem\Directory;
 
+use function Glowy\Filesystem\filesystem;
+
 beforeEach(function (): void {
     $this->tempDir = __DIR__ . '/tmp';
     @mkdir($this->tempDir);
