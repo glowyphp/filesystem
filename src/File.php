@@ -42,7 +42,7 @@ class File
      *
      * Current file absolute path
      */
-    public ?string $path = null;
+    public string|null $path = null;
 
     /**
      * Constructor
@@ -62,7 +62,7 @@ class File
      *
      * @return int|bool Returns the number of bytes that were written to the file, or FALSE on failure.
      */
-    public function put(string $data, bool $lock = false)
+    public function put(string $data, bool $lock = false): int|bool
     {
         return file_put_contents($this->path, $data, $lock ? LOCK_EX : 0);
     }
@@ -72,9 +72,9 @@ class File
      * 
      * @param  bool $lock Acquire an exclusive lock on the file while proceeding to the reading.
      *
-     * @return string|false The file contents or false on failure.
+     * @return string|bool The file contents or false on failure.
      */
-    public function get($lock = false)
+    public function get($lock = false): string|bool
     {
         if ($this->isFile($this->path)) {
             $contents = $lock ? $this->sharedGet() : file_get_contents($this->path);
@@ -90,9 +90,9 @@ class File
     /**
      * Get contents of a file with shared access.
      * 
-     * @return string|false The file contents or false on failure.
+     * @return string|bool The file contents or false on failure.
      */
-    public function sharedGet()
+    public function sharedGet(): string|bool
     {
         $contents = false;
 
@@ -142,7 +142,7 @@ class File
      *
      * @return int|bool Returns the number of bytes that were written to the file, or FALSE on failure.
      */
-    public function prepend(string $data)
+    public function prepend(string $data): int|bool
     {
         if ($this->exists($this->path)) {
             return $this->put($data . $this->get($this->path));
@@ -158,7 +158,7 @@ class File
      *
      * @return int|bool Returns the number of bytes that were written to the file, or FALSE on failure.
      */
-    public function append(string $data)
+    public function append(string $data): int|bool
     {
         return file_put_contents($this->path, $data, FILE_APPEND);
     }
@@ -287,7 +287,7 @@ class File
      *
      * @return string|null Current path
      */
-    public function path(): ?string
+    public function path(): string|null
     {
         return $this->path;
     }
@@ -387,7 +387,7 @@ class File
      *
      * @return mixed
      */
-    public function chmod(?int $mode = null)
+    public function chmod(int|null $mode = null)
     {
         if ($mode) {
             return chmod($this->path, $mode);

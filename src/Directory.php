@@ -25,7 +25,7 @@ class Directory
      *
      * Current directory path.
      */
-    public ?string $path = null;
+    public string|null $path = null;
 
     /**
      * Constructor
@@ -113,7 +113,7 @@ class Directory
      *
      * @return bool Returns TRUE on success or FALSE on failure.
      */
-    public function copy(string $destination, ?int $flags = null): bool
+    public function copy(string $destination, int|null $flags = null): bool
     {
         $directory = $this->path;
 
@@ -216,7 +216,7 @@ class Directory
      *
      * @return string|null Current path
      */
-    public function path(): ?string
+    public function path(): string|null
     {
         return $this->path;
     }
@@ -230,7 +230,7 @@ class Directory
      *
      * @return mixed
      */
-    public function chmod(?int $mode = null)
+    public function chmod(int|null $mode = null)
     {
         if ($mode) {
             return chmod($this->path, $mode);
