@@ -155,6 +155,7 @@ test('file get method', function (): void {
     $filesystem->file($this->tempDir . '/1.txt')->put('test');
     $this->assertEquals('test', $filesystem->file($this->tempDir . '/1.txt')->get());
     $this->assertEquals('test', $filesystem->file($this->tempDir . '/1.txt')->get(true));
+    $this->assertEquals(false, $filesystem->file($this->tempDir . '/2.txt')->get());
 });
 
 test('file sharedGet method', function (): void {

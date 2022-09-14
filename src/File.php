@@ -76,6 +76,8 @@ class File
      */
     public function get($lock = false): string|bool
     {
+        $contents = false;
+
         if ($this->isFile($this->path)) {
             $contents = $lock ? $this->sharedGet() : file_get_contents($this->path);
         }
